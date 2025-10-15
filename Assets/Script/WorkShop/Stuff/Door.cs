@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class Door : Stuff
+public class Door : Stuff, IInteractable
 {
     public Door() {
         Name = "Door";
@@ -26,8 +26,14 @@ public class Door : Stuff
     {
         Vector3 startPosition = door.position;
         float timeElapsed = 0;
+        
+        while(timeElapsed < 1)
+        {
+            timeElapsed += Time.deltaTime + slideSpeed;
+            door.position = Vector3.Lerp(startPosition, targetPosition, timeElapsed);
+            yield return null;
+        }
 
-        yield return null;
         door.position = targetPosition;
     }
 

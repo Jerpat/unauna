@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface Idestoryable
+public interface Idestroyable
 {
     // คุณสมบัติสำหรับค่าพลังชีวิตปัจจุบัน
     int health { get; set; }
@@ -12,6 +12,6 @@ public interface Idestoryable
     void TakeDamage(int damageAmount) { 
         health -= damageAmount;
     }
-    event System.Action<Idestoryable> OnDestory;
+    event System.Action<Idestroyable> OnDestroy;
 
 }

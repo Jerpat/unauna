@@ -59,7 +59,7 @@ public class Player : Character
     public void Attack(bool isAttacking) {
         if (isAttacking) {
             animator.SetTrigger("Attack");
-            var e = InFront as Idestoryable;
+            var e = InFront as Idestroyable;
             if (e != null)
             {
                 e.TakeDamage(Damage);
