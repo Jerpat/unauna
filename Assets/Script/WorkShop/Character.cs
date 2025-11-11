@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Character : Identity, Idestroyable
+public class Character : Identity, IDestroyable
 {
     int _health;
     public int health
@@ -21,13 +21,12 @@ public class Character : Identity, Idestroyable
     public int Defense = 10;
     public float movementSpeed;
 
-    public GameManager gm;
-
     protected Animator animator;
     protected Rigidbody rb;
+    protected Collider col;
     Quaternion newRotation;
 
-    public event Action<Idestroyable> OnDestroy;
+    public event Action<IDestroyable> OnDestroy;
 
     //------------------------------------------------------
 
@@ -42,6 +41,12 @@ public class Character : Identity, Idestroyable
         if (animator == null)
         {
             Debug.LogError("Animator component not found on " + gameObject.name);
+        }
+
+        col = GetComponent<Collider>();
+        if (GetComponent<Collider>() == null)
+        {
+            BoxCollider col = gameObject.AddComponent<BoxCollider>();
         }
     }
     public virtual void TakeDamage(int amount)

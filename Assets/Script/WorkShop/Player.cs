@@ -80,7 +80,7 @@ public class Player : Character
             animator.SetTrigger("Attack");
             //edit to Idestoryable, so, not only enemy that player can destroy
             //Enemy e = InFront as Enemy;
-            var e = InFront as Idestroyable;
+            var e = InFront as IDestroyable;
             if (e != null)
             {
                 e.TakeDamage(Damage);

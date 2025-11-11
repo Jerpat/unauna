@@ -20,13 +20,13 @@ public class QuestManager : MonoBehaviour
     }
 
     // เมธอดที่ QuestManager ใช้ "ฟัง" การตายของศัตรู
-    public void SubscribeToEnemyDeath(Idestroyable enemy)
+    public void SubscribeToEnemyDeath(IDestroyable enemy)
     {
         enemy.OnDestroy += HandleEnemyDied;
     }
 
     // Handler สำหรับ Event การตายของศัตรู
-    private void HandleEnemyDied(Idestroyable enemy)
+    private void HandleEnemyDied(IDestroyable enemy)
     {
         // 1. ตรวจสอบประเภทศัตรูที่ตาย
         string enemyType = enemy.GetType().Name; // ในตัวอย่างคือ "Wolf"
