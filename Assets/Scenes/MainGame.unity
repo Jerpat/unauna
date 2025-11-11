@@ -217,6 +217,7 @@ MonoBehaviour:
   Defense: 10
   movementSpeed: 1
   seeRange: 7
+  atkRange: 5
 --- !u!135 &49340422
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -598,6 +599,7 @@ MonoBehaviour:
   Defense: 10
   movementSpeed: 0
   seeRange: 7
+  atkRange: 5
   canTalk: 1
   interactionTextUI: {fileID: 2031986107}
   WordTextUI: {fileID: 627774351}
@@ -742,6 +744,7 @@ MonoBehaviour:
   Defense: 10
   movementSpeed: 0
   seeRange: 7
+  atkRange: 5
   attackRange: 5
 --- !u!135 &203882644
 SphereCollider:
@@ -2128,7 +2131,8 @@ MonoBehaviour:
   Damage: 10
   Defense: 10
   movementSpeed: 0
-  seeRange: 10
+  seeRange: 5
+  atkRange: 3
   canTalk: 1
 --- !u!54 &646548542
 Rigidbody:
@@ -3266,6 +3270,7 @@ MonoBehaviour:
   Defense: 10
   movementSpeed: 0
   seeRange: 7
+  atkRange: 5
   canTalk: 1
   interactionTextUI: {fileID: 1520061146}
   WordTextUI: {fileID: 1507931202}
@@ -4617,6 +4622,7 @@ MonoBehaviour:
   Defense: 10
   movementSpeed: 0
   seeRange: 7
+  atkRange: 5
 --- !u!54 &1727691255
 Rigidbody:
   m_ObjectHideFlags: 0
