@@ -11,17 +11,24 @@ public class Enemy : Character
     protected float seeRange = 10f;
     [SerializeField]
     protected float atkRange = 5f;
-    private float TimeToAttack = 1f;
+    protected float TimeToAttack = 1f;
     protected float timer = 0f;
+
+    public bool isChasing = false;
 
     protected State currentState = State.idle;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        if (agent == null)
+        {
+            agent = gameObject.AddComponent<NavMeshAgent>();
+            agent.stoppingDistance = 2.0f;
+        }
     }
 
-    private void Update()
+    protected virtual void Update()
     { 
         if (player == null)
         {
@@ -53,13 +60,22 @@ public class Enemy : Character
         transform.rotation = lookRotation;
     }
 
-    protected virtual void Follows(Player _player)
+    /*protected virtual void Follows(Player _player)
     {
         Vector3 destination = player.transform.position;
         if(GetDistancePlayer() < seeRange && GetDistancePlayer() > atkRange)
         {
             agent.SetDestination(destination);
             Debug.Log($"{Name} start following");
+        }
+    }*/
+
+    protected void Chase(Player _player)
+    {
+        //Vector3 destination = _player.transform.position;
+        if (GetDistancePlayer() < seeRange && GetDistancePlayer() > atkRange)
+        {
+            agent.SetDestination(_player.transform.position);
         }
     }
 

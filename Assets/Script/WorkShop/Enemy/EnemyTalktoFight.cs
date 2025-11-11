@@ -10,7 +10,7 @@ public class EnemyTalktoFight : Enemy, IInteractable
     public TMP_Text interactionTextUI;
     public TMP_Text WordTextUI;
 
-    public void Update()
+    protected override void Update()
     {
         if (player == null)
         {
