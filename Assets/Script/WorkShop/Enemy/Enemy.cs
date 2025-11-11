@@ -5,37 +5,46 @@ public class Enemy : Character
 {
     protected enum State { idle, chase, attack, death }
 
-    private NavMeshAgent agent;
-    public Transform target;
+    protected NavMeshAgent agent;
 
     [SerializeField] //show in inspector even it is private
-    private float TimeToAttack = 1f;
-    protected State currentState = State.idle;
-
+    protected float seeRange = 10f;
     [SerializeField]
+    protected float atkRange = 5f;
+    private float TimeToAttack = 1f;
     protected float timer = 0f;
 
-    private void Update()
+    protected State currentState = State.idle;
+
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+    }
 
+    private void Update()
+    { 
         if (player == null)
         {
             animator.SetBool("Attack", false);
             return;
         }
 
-        Turn(player.transform.position - transform.position);
         timer -= Time.deltaTime;
 
-        if (GetDistancePlayer() < 1.5)
+        if(GetDistancePlayer() <= seeRange)
+        {
+            Turn(player.transform.position - transform.position);
+        }
+
+        if (GetDistancePlayer() <= atkRange)
         {
             Attack(player);
         }
-        else
+        /*else
         {
             animator.SetBool("Attack", false);
-        }
+            agent.ResetPath();
+        }*/
     }
 
     protected override void Turn(Vector3 direction)
@@ -43,6 +52,17 @@ public class Enemy : Character
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = lookRotation;
     }
+
+    protected virtual void Follows(Player _player)
+    {
+        Vector3 destination = player.transform.position;
+        if(GetDistancePlayer() < seeRange && GetDistancePlayer() > atkRange)
+        {
+            agent.SetDestination(destination);
+            Debug.Log($"{Name} start following");
+        }
+    }
+
     protected virtual void Attack(Player _player)
     {
         if (timer <= 0)
@@ -52,6 +72,13 @@ public class Enemy : Character
             Debug.Log($"{Name} attacks {_player.Name} for {Damage} damage.");
             timer = TimeToAttack;
         }
+    }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, atkRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, seeRange);
     }
 }

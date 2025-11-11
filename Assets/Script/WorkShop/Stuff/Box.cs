@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Box : Stuff, IInteractable, Idestroyable
+public class Box : Stuff, IInteractable, IDestroyable
 {
     public Box() {
         Name = "Box";
@@ -23,7 +23,7 @@ public class Box : Stuff, IInteractable, Idestroyable
         _rb = GetComponent<Rigidbody>();
     }
 
-    public event Action<Idestroyable> OnDestroy;
+    public event Action<IDestroyable> OnDestroy;
 
     public void Interact(Player player)
     {
