@@ -6,6 +6,6 @@ public interface IInteractable
     bool isInteractable { get; set; }
 
     // function works when interacted
-    void Interact(Player player);
+    void Interact(Player _player);
 
 }

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [Header("UI Game")]
     public GameObject pauseMenuUI;
     public TMP_Text scoreText;
+    public TMP_Text HPText;
     public Slider HPBar;
 
     // 3. Private Constructor Logic (ใช้ Awake() แทน Constructor ปกติใน Unity)
@@ -36,6 +37,11 @@ public class GameManager : MonoBehaviour
 
     // ------------------- Singleton Functionality -------------------
 
+    public void UpdateHealthText(int health)
+    {
+        Debug.Log("HP : " + health);
+        HPText.text = "HP : " + " " + health.ToString();
+    }
     public void UpdateHealthBar(int currentHealth, int maxHealth)
     {
         HPBar.value = currentHealth;

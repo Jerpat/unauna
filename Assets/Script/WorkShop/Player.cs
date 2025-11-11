@@ -12,6 +12,7 @@ public class Player : Character
 
     bool _isAttacking = false;
     bool _isBlocking = false;
+    bool _isInteract = false;
 
     public Sword currentWeapon;
 
@@ -29,6 +30,7 @@ public class Player : Character
         Turn(_inputDirection);
         Attack(_isAttacking);
         Block(_isBlocking);
+        Interact(_isInteract);
     }
     public void Update()
     {
@@ -48,16 +50,17 @@ public class Player : Character
 
         _inputDirection = new Vector3(x, 0, y);
         _isAttacking = Input.GetMouseButtonDown(0);
+        _isInteract = Input.GetKeyDown(KeyCode.E);
 
         //add input to Interact
-        if (Input.GetKeyDown(KeyCode.E))
+        /*if (Input.GetKeyDown(KeyCode.E))
         {
             IInteractable i = InFront as IInteractable;
             if (i != null)
             {
                 i.Interact(this);
             }
-        }
+        }*/
     }
 
     // setting holding in right hand
@@ -92,7 +95,21 @@ public class Player : Character
         if (isBlocking)
         {
             animator.SetTrigger("Block");
-            Debug.Log($"{gameObject.name} Blocks damage.");
+            Debug.Log($"{gameObject.name} blocks damage.");
+        }
+    }
+
+    private void Interact(bool isInteracting)
+    {
+        if (isInteracting)
+        {
+            IInteractable i = InFront as IInteractable;
+            if (i != null)
+            {
+                i.Interact(this);
+            }
+            _isInteract = false;
+
         }
     }
     ///////////////add method Interact///////////////

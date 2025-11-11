@@ -1,18 +1,24 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : Character
 {
-    protected enum State { idel, cheses, attack, death }
+    protected enum State { idle, chase, attack, death }
 
-    [SerializeField]
+    private NavMeshAgent agent;
+    public Transform target;
+
+    [SerializeField] //show in inspector even it is private
     private float TimeToAttack = 1f;
-    protected State currentState = State.idel;
+    protected State currentState = State.idle;
 
     [SerializeField]
     protected float timer = 0f;
 
     private void Update()
     {
+        agent = GetComponent<NavMeshAgent>();
+
         if (player == null)
         {
             animator.SetBool("Attack", false);

@@ -19,17 +19,17 @@ public class EnemyTalktoFight : Enemy, IInteractable
         }
         Turn(player.transform.position - transform.position);
 
-        if (currentState == State.idel)
+        if (currentState == State.idle)
         {
-            IdelState();
+            IdleState();
         }
         else if (currentState == State.attack) {
-            attakeState();
+            AttackState();
         }
         
     }
 
-    private void IdelState()
+    private void IdleState()
     {
         if (GetDistancePlayer() >= 2f || !canTalk)
         {
@@ -40,7 +40,7 @@ public class EnemyTalktoFight : Enemy, IInteractable
             interactionTextUI.gameObject.SetActive(true);
         }
     }
-    private void attakeState()
+    private void AttackState()
     {
         if (player == null)
         {
@@ -65,7 +65,7 @@ public class EnemyTalktoFight : Enemy, IInteractable
     public void Interact(Player player)
     {
         Debug.Log("Interact");
-        if (currentState == State.idel) {
+        if (currentState == State.idle) {
             interactionTextUI.gameObject.SetActive(false);
             currentState = State.attack;
         }

@@ -44,7 +44,7 @@ public class Character : Identity, Idestroyable
             Debug.LogError("Animator component not found on " + gameObject.name);
         }
     }
-    public void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount)
     {
         amount = Mathf.Clamp(amount - Defense, 1, amount);
         health -= amount;
@@ -62,7 +62,7 @@ public class Character : Identity, Idestroyable
         }*/
     }
 
-    public void Heal(int amount)
+    public virtual void Heal(int amount)
     {
         health += amount;
         if (health > _maxHealth)
