@@ -76,14 +76,18 @@ public class Identity : MonoBehaviour
             return _IdentityInFront.GetComponent<Identity>();
         }
     }
+
+    float sphereRadius = 0.5f;
+    float maxDistance = 1f;
+
     private void Start()
     {
         SetUP();
     }
     public virtual void SetUP()
     {
-
     }
+
     protected float GetDistancePlayer()
     {
         distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
@@ -94,9 +98,39 @@ public class Identity : MonoBehaviour
 
         return ("Name : " + Name + " x:" + positionX + " y:" + positionY);
     }
+
+    protected RaycastHit GetClosestInfornt()
+    {
+
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, sphereRadius, transform.forward, maxDistance);
+
+        RaycastHit closestHit = new RaycastHit();
+        float minDistance = float.MaxValue;
+
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.collider.gameObject != gameObject && hit.collider.GetComponent<Identity>() != null)
+            {
+                if (hit.distance < minDistance)
+                {
+                    minDistance = hit.distance;
+                    closestHit = hit;
+                }
+            }
+        }
+        return closestHit;
+
+    }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 1f);
+        Vector3 endPosition = transform.position + transform.forward * maxDistance;
+        Gizmos.color = new Color(1f, 0.5f, 0f, 0.5f);
+        Gizmos.DrawWireSphere(endPosition, sphereRadius);
+
+        if (_IdentityInFront != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(_IdentityInFront.transform.position, sphereRadius * 1.5f);
+        }
     }
 }

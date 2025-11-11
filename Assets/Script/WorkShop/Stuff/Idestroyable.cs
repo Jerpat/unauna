@@ -6,7 +6,10 @@ public interface Idestroyable
 
     int maxHealth { get; set; }
 
-    void TakeDamage(int damageAmount);
+    void TakeDamage(int damageAmount)
+    {
+        health -= damageAmount;
+    }
 
     event System.Action<Idestroyable> OnDestroy;
 
