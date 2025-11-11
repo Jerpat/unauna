@@ -112,5 +112,17 @@ public class Player : Character
 
         }
     }
+
+    public override void TakeDamage(int amount)
+    {
+        base.TakeDamage(amount);
+        GameManager.instance.UpdateHealthText(health);
+    }
+
+    public override void Heal(int amount)
+    {
+        base.Heal(amount);
+        GameManager.instance.UpdateHealthText(health);
+    }
     ///////////////add method Interact///////////////
 }
