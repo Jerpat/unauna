@@ -3071,7 +3071,7 @@ MonoBehaviour:
   isGamePaused: 0
   pauseMenuUI: {fileID: 0}
   scoreText: {fileID: 0}
-  HPText: {fileID: 0}
+  HPText: {fileID: 356709752}
   HPBar: {fileID: 1257042678}
 --- !u!1 &938910308
 GameObject:
