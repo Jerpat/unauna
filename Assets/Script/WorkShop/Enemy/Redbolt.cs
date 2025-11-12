@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Redbolt : Enemy, IInteractable
 {
@@ -46,28 +48,34 @@ public class Redbolt : Enemy, IInteractable
         }
 
         Collider[] hits = Physics.OverlapSphere(transform.position, atkRange);
+        List<Character> ListTarget = new List<Character>();
         foreach (Collider hit in hits)
         {
-            Character _enemy = null;
-            if (hit.CompareTag("Enemy") && hit.gameObject != this.gameObject)
+            if (hit.gameObject != this.gameObject)
             {
-                _enemy = hit.GetComponent<Character>();
-                if (_enemy != null)
+                Buzzvenom c  = hit.GetComponent<Buzzvenom>();
+                if (c != null) {
+                    ListTarget.Add(c);
+                }
+                Player player = hit.GetComponent<Player>();
+                if (player != null)
                 {
-                    Turn(_enemy.transform.position - transform.position);
-
-                    if(agent != null)
-                    {
-                        agent.SetDestination(_enemy.transform.position);
-                    }
-
-                    _enemy.TakeDamage(Damage);
-                    animator.SetTrigger("Attack");
-                    Debug.Log($"{Name} attacks {_enemy.Name} for {Damage} damage.");
-                    timer = TimeToAttack;
-                    break;
+                    ListTarget.Add(player);
                 }
             }
         }
+        
+        Character Target = null;
+        foreach (Character c in ListTarget)
+        {
+            float distacne = Vector3.Distance(transform.position, c.transform.position);
+            float Targetdistacne = Vector3.Distance(transform.position, Target.transform.position);
+            if (distacne < Targetdistacne) {
+                Target = c;
+            }
+        }
+
+        //MOVE TO TARGET
+
     }
 }

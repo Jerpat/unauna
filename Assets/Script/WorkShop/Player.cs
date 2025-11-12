@@ -117,12 +117,14 @@ public class Player : Character
     {
         base.TakeDamage(amount);
         GameManager.instance.UpdateHealthText(health);
+        GameManager.instance.UpdateHealthBar(health, maxHealth);
     }
 
     public override void Heal(int amount)
     {
         base.Heal(amount);
         GameManager.instance.UpdateHealthText(health);
+        GameManager.instance.UpdateHealthBar(health, maxHealth);
     }
     ///////////////add method Interact///////////////
 }

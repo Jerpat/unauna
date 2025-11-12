@@ -3975,7 +3975,7 @@ MonoBehaviour:
   _name: Door
   interactionTextUI: {fileID: 1770528655}
   CanUse: 1
-  openOffset: {x: 0, y: 0, z: 2}
+  openOffset: {x: 2, y: 0, z: 0}
   slideSpeed: 2
   door: {fileID: 39442621}
 --- !u!1 &1431357044
