@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
-public class Enemy : Character
+public class EnemyPatrol : Character
 {
-    protected enum State { idle, chase, attack, death }
+    protected enum State { idle, chase, attack, death, patrol }
 
     protected NavMeshAgent agent;
 
@@ -16,7 +16,13 @@ public class Enemy : Character
     protected float TimeToAttack = 1f;
     protected float timer = 0f;
 
-    //public bool isChasing = false;
+    [Header("Enemy Behavior")]
+    public bool isReturnToOrigin = false;
+    private Transform originPos;
+
+    public bool isPatrol = false;
+    public Transform[] waypoints;
+    private int currentWaypointIndex = 0;
 
     protected State currentState = State.idle;
 
@@ -28,50 +34,45 @@ public class Enemy : Character
             agent = gameObject.AddComponent<NavMeshAgent>();
             agent.stoppingDistance = 2.0f;
         }
-        /*agent = GetComponent<NavMeshAgent>();
-        agent.stoppingDistance = 2.0f;*/
+        originPos = new GameObject($"{name}_Origin").transform;
+        originPos.position = transform.position;
     }
 
     protected virtual void Update()
-    { 
+    {
+        timer -= Time.deltaTime;
+
         /*if (player == null)
         {
-            animator.SetBool("Attack", false);
+            patrolState();
             return;
         }*/
 
-        timer -= Time.deltaTime;
-
-        if(player == null)
+        if (GetDistancePlayer() > seeRange)
         {
-            idleState();
+            animator.SetBool("Attack", false);
+            if (isReturnToOrigin)
+            {
+                agent.SetDestination(originPos.position);
+            }
+            else
+            {
+                patrolState();
+            }
             return;
         }
 
-        if (GetDistancePlayer() > seeRange)
+        if (GetDistancePlayer() <= seeRange && GetDistancePlayer() > atkRange)
         {
-            idleState();
-        }
-        else if (GetDistancePlayer() <= seeRange && GetDistancePlayer() > atkRange)
-        {
-            //agent.SetDestination(player.transform.position);
             Turn(player.transform.position - transform.position);
             Chase(player);
+            return;
         }
         else
         {
             agent.ResetPath();
             Attack(player);
         }
-        /*else
-        {
-            Chase(player);
-        }*/
-        /*else
-        {
-            animator.SetBool("Attack", false);
-            agent.ResetPath();
-        }*/
     }
 
     protected virtual void idleState()
@@ -80,47 +81,46 @@ public class Enemy : Character
         animator.SetBool("Attack", false);
     }
 
+    protected virtual void patrolState()
+    {
+        if (!isPatrol || waypoints.Length == 0)
+        {
+            idleState();
+            return;
+        }
+
+        Transform wp = waypoints[currentWaypointIndex];
+        agent.SetDestination(wp.position);
+        animator.SetBool("Attack", false);
+
+        if (Vector3.Distance(transform.position, wp.position) < 0.5f)
+        {
+            currentWaypointIndex++;
+            if (currentWaypointIndex >= waypoints.Length)
+            {
+                currentWaypointIndex = 0;
+            }
+        }
+    }
+
     protected override void Turn(Vector3 direction)
     {
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = lookRotation;
+        //transform.rotation = Quaternion.LookRotation(direction); short ver
     }
 
     protected void Chase(Player _player)
     {
-        //Vector3 destination = _player.transform.position;
-        /*if (GetDistancePlayer() < seeRange && GetDistancePlayer() > atkRange)
-        {
-            agent.SetDestination(_player.transform.position);
-        }*/
         if (_player == null) return;
         agent.SetDestination(_player.transform.position);
         animator.SetBool("Attack", false);
     }
 
-    /*protected virtual void Follows(Player _player)
-    {
-        Vector3 destination = player.transform.position;
-        if(GetDistancePlayer() < seeRange && GetDistancePlayer() > atkRange)
-        {
-            agent.SetDestination(destination);
-            Debug.Log($"{Name} start following");
-        }
-    }*/
-
     protected virtual void Attack(Player _player)
     {
-        /*if (timer < 0)
-        {
-            _player.TakeDamage(Damage);
-            animator.SetBool("Attack", true);
-            Debug.Log($"{Name} attacks {_player.Name} for {Damage} damage.");
-            timer = TimeToAttack;
-        }*/
+        if (timer > 0) return;
 
-        if(timer > 0 || player == null) return;
-
-        agent.ResetPath();
         Turn(_player.transform.position - transform.position);
         _player.TakeDamage(Damage);
         animator.SetBool("Attack", true);
@@ -134,5 +134,14 @@ public class Enemy : Character
         Gizmos.DrawWireSphere(transform.position, atkRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, seeRange);
+        Gizmos.color = Color.blue;
+        for(int i = 0; i < waypoints.Length; i++)
+        {
+            Gizmos.DrawWireSphere(waypoints[i].position, 0.3f);
+            if(i < waypoints.Length - 1)
+            {
+                Gizmos.DrawLine(waypoints[i].position, waypoints[i + 1].position);
+            }
+        }
     }
 }

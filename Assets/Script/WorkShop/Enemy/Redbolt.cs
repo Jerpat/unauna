@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Redbolt : Enemy, IInteractable
 {
@@ -8,20 +9,49 @@ public class Redbolt : Enemy, IInteractable
 
     public bool isInteractable { get => canTalk; set => canTalk = value; }
 
+    protected bool isChasing = false;
+    public void Interact(Player _player)
+    {
+        isChasing = true;
+        Debug.Log($"{Name} start chasing {_player.Name}");
+    }
+
     protected override void Update()
     {
-        base.Update();
+        //base.Update();
+        timer -= Time.deltaTime;
 
-        if (player != null)
+        if (!isChasing || player == null)
         {
-            if (isChasing)
+            idleState();
+            return;
+            
+        }/*
+        else if (isChasing)
+        {
+            Chase(player);
+        }
+
+        Attack(player);*/
+
+        Character closestT = FindClosestTarget();
+        if (closestT != null)
+        {
+            float distance = Vector3.Distance(transform.position, closestT.transform.position);
+            if (distance > atkRange)
             {
-                Chase(player);
+                agent.SetDestination(closestT.transform.position);
+                animator.SetBool("Attack", false);
             }
             else
             {
                 agent.ResetPath();
+                Attack(null);
             }
+        }
+        else
+        {
+            Chase(player);
         }
     }
 
@@ -34,48 +64,73 @@ public class Redbolt : Enemy, IInteractable
         }
     }*/
 
-    public void Interact(Player _player)
+    protected Character FindClosestTarget()
     {
-        isChasing = true;
-        Debug.Log($"{Name} start chasing {_player.Name}");
+        Collider[] hits = Physics.OverlapSphere(transform.position, seeRange);
+        Character closest = null;
+        float minDist = Mathf.Infinity;
+
+        foreach (Collider hit in hits)
+        {
+            if (hit.gameObject == this.gameObject) continue;
+            
+                Buzzvenom c = hit.GetComponent<Buzzvenom>();
+                if (c != null)
+                {
+                    float dist = Vector3.Distance(transform.position, c.transform.position);
+                    if (dist < minDist)
+                    {
+                        minDist = dist;
+                        closest = c;
+                    }
+                }
+        }
+        return closest;
     }
+    
 
     protected override void Attack(Player _player)
     {
-        if (timer > 0)
-        {
-            return;
-        }
+        if (timer > 0) return;
 
-        Collider[] hits = Physics.OverlapSphere(transform.position, atkRange);
+        Collider[] hits = Physics.OverlapSphere(transform.position, seeRange);
         List<Character> ListTarget = new List<Character>();
         foreach (Collider hit in hits)
         {
             if (hit.gameObject != this.gameObject)
             {
-                Buzzvenom c  = hit.GetComponent<Buzzvenom>();
-                if (c != null) {
-                    ListTarget.Add(c);
-                }
-                Player player = hit.GetComponent<Player>();
-                if (player != null)
+                Buzzvenom c = hit.GetComponent<Buzzvenom>();
+                if (c != null)
                 {
-                    ListTarget.Add(player);
+                    ListTarget.Add(c);
                 }
             }
         }
-        
-        Character Target = null;
+
+        Character _target = null;
+        float targetDistance = Mathf.Infinity;
+
         foreach (Character c in ListTarget)
         {
             float distacne = Vector3.Distance(transform.position, c.transform.position);
-            float Targetdistacne = Vector3.Distance(transform.position, Target.transform.position);
-            if (distacne < Targetdistacne) {
-                Target = c;
+            //float Targetdistacne = Vector3.Distance(transform.position, _target.transform.position);
+            if (distacne < targetDistance)
+            {
+                targetDistance = distacne;
+                _target = c;
             }
         }
 
-        //MOVE TO TARGET
+        if (_target != null)
+        {
+            Turn(_target.transform.position - transform.position);
+            agent.SetDestination(_target.transform.position);
 
+            _target.TakeDamage(Damage);
+            animator.SetTrigger("Attack");
+            Debug.Log($"{Name} attacks {_target.Name} for {Damage} damage.");
+            timer = TimeToAttack;
+        }
     }
 }
+
