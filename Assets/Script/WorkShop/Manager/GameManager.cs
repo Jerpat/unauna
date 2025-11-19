@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateHealthText(int health)
     {
-        Debug.Log("HP : " + health);
+        //Debug.Log("HP : " + health);
         HPText.text = "HP : " + " " + health.ToString();
     }
     public void UpdateHealthBar(int currentHealth, int maxHealth)

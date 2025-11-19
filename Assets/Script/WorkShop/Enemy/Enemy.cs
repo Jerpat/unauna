@@ -128,6 +128,17 @@ public class Enemy : Character
         timer = TimeToAttack;
     }
 
+    public override void TakeDamage(int amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            QuestManager.instance.OnGoingQuest(1);
+            //SoundManager.instance.PlaySFX(SoundDefeat);
+            Destroy(gameObject);
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

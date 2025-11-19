@@ -23,7 +23,7 @@ public class Car : MonoBehaviour
         CarName = "MyCar";
         CarColor = Color.red;
         CarSpeed = 1.0f;
-        Debug.Log("Default car was be created.");
+        //Debug.Log("Default car was be created.");
     }
     public Car(string _name,Color _color, float _speed)
     {
