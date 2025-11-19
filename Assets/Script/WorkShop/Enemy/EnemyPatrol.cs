@@ -93,7 +93,7 @@ public class EnemyPatrol : Character
         agent.SetDestination(wp.position);
         animator.SetBool("Attack", false);
 
-        if (Vector3.Distance(transform.position, wp.position) < 0.5f)
+        if (Vector3.Distance(transform.position, wp.position) < 4f)
         {
             currentWaypointIndex++;
             if (currentWaypointIndex >= waypoints.Length)

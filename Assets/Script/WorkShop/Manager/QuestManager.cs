@@ -55,6 +55,7 @@ public class QuestManager : MonoBehaviour
         Debug.Log($"Kills Count = {currentQuestProgress}");
         if (IsActive == true && currentQuestProgress >= 3)
         {
+
             //QuestText.text = "Quest: Completed! (Talk to Merchant Governor to countinue)";
             CompletedQuest();
         }

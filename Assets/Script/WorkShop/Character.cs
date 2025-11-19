@@ -53,6 +53,10 @@ public class Character : Identity, IDestroyable
     {
         amount = Mathf.Clamp(amount - Defense, 1, amount);
         health -= amount;
+        if (health <= 0) { }
+        {
+        }
+       
 
         /*if (gm != null)
         {

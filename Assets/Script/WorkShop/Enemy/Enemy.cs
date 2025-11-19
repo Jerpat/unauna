@@ -32,6 +32,11 @@ public class Enemy : Character
         agent.stoppingDistance = 2.0f;*/
     }
 
+    public override void SetUP()
+    {
+        base.SetUP();
+
+    }
     protected virtual void Update()
     { 
         /*if (player == null)
