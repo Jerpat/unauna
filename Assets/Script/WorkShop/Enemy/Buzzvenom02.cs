@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class Buzzvenom : Enemy, IDestroyable
+public class Buzzvenom02 : EnemyPatrol, IDestroyable
 {
     protected override void Update()
     {
@@ -13,13 +13,29 @@ public class Buzzvenom : Enemy, IDestroyable
 
         if (closestT == null)
         {
-            idleState();
+            patrolState();
             return;
         }
 
+        float distance = Vector3.Distance(transform.position, closestT.transform.position);
+
+        if (distance > seeRange)
+        {
+            animator.SetBool("Attack", false);
+            if (isReturnToOrigin)
+            {
+                agent.SetDestination(originPos.position);
+            }
+            else
+            {
+                patrolState();
+            }
+            return;
+        }
+
+
         if (closestT != null)
         {
-            float distance = Vector3.Distance(transform.position, closestT.transform.position);
             if (distance > atkRange)
             {
                 agent.SetDestination(closestT.transform.position);
@@ -75,7 +91,7 @@ public class Buzzvenom : Enemy, IDestroyable
             idleState();
         }*/
     }
-    protected Character FindClosestTarget<T1, T2>() 
+    protected Character FindClosestTarget<T1, T2>()
         where T1 : Character
         where T2 : Character
 

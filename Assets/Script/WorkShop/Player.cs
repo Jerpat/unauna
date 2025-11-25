@@ -109,7 +109,6 @@ public class Player : Character
                 i.Interact(this);
             }
             _isInteract = false;
-
         }
     }
 

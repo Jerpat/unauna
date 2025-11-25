@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
-public class Enemy : Character
+public abstract class Enemy : Character
 {
-    protected enum State { idle, chase, attack, death }
+    protected enum State { idle, run, attack, death }
 
     protected NavMeshAgent agent;
 
@@ -16,11 +16,9 @@ public class Enemy : Character
     protected float TimeToAttack = 1f;
     protected float timer = 0f;
 
-    //public bool isChasing = false;
-
     protected State currentState = State.idle;
 
-    private void Awake()
+    protected void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         if (agent == null)
@@ -79,7 +77,7 @@ public class Enemy : Character
         }*/
     }
 
-    protected virtual void idleState()
+    protected void idleState()
     {
         agent.ResetPath();
         animator.SetBool("Attack", false);
@@ -102,16 +100,6 @@ public class Enemy : Character
         agent.SetDestination(_player.transform.position);
         animator.SetBool("Attack", false);
     }
-
-    /*protected virtual void Follows(Player _player)
-    {
-        Vector3 destination = player.transform.position;
-        if(GetDistancePlayer() < seeRange && GetDistancePlayer() > atkRange)
-        {
-            agent.SetDestination(destination);
-            Debug.Log($"{Name} start following");
-        }
-    }*/
 
     protected virtual void Attack(Player _player)
     {

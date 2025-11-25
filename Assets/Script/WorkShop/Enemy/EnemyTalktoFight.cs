@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnemyTalktoFight : Enemy, IInteractable
 {
     public bool canTalk = true;
-    
     public bool isInteractable { get => canTalk; set => canTalk = value; } 
 
     public TMP_Text interactionTextUI;

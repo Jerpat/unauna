@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
-public class EnemyPatrol : Character
+public abstract class EnemyPatrol : Character
 {
     protected enum State { idle, chase, attack, death, patrol }
 
@@ -18,7 +18,7 @@ public class EnemyPatrol : Character
 
     [Header("Enemy Behavior")]
     public bool isReturnToOrigin = false;
-    private Transform originPos;
+    protected Transform originPos;
 
     public bool isPatrol = false;
     public Transform[] waypoints;
@@ -26,7 +26,7 @@ public class EnemyPatrol : Character
 
     protected State currentState = State.idle;
 
-    private void Awake()
+    protected void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         if (agent == null)
@@ -126,6 +126,16 @@ public class EnemyPatrol : Character
         animator.SetBool("Attack", true);
         Debug.Log($"{Name} attacks {_player.Name} for {Damage} damage.");
         timer = TimeToAttack;
+    }
+
+    public override void TakeDamage(int amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            //SoundManager.instance.PlaySFX(SoundDefeat);
+            Destroy(gameObject);
+        }
     }
 
     private void OnDrawGizmos()

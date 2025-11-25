@@ -5,11 +5,11 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Redbolt : Enemy, IInteractable
 {
+    protected bool isChasing = false;
     public bool canTalk = true;
 
     public bool isInteractable { get => canTalk; set => canTalk = value; }
 
-    protected bool isChasing = false;
     public void Interact(Player _player)
     {
         isChasing = true;
@@ -26,7 +26,8 @@ public class Redbolt : Enemy, IInteractable
             idleState();
             return;
             
-        }/*
+        }
+        /*
         else if (isChasing)
         {
             Chase(player);
@@ -34,7 +35,7 @@ public class Redbolt : Enemy, IInteractable
 
         Attack(player);*/
 
-        Character closestT = FindClosestTarget();
+        Character closestT = FindClosestTarget<Buzzvenom02>();
         if (closestT != null)
         {
             float distance = Vector3.Distance(transform.position, closestT.transform.position);
@@ -64,7 +65,7 @@ public class Redbolt : Enemy, IInteractable
         }
     }*/
 
-    protected Character FindClosestTarget()
+    protected Character FindClosestTarget<T>() where T : Character
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, seeRange);
         Character closest = null;
@@ -74,14 +75,14 @@ public class Redbolt : Enemy, IInteractable
         {
             if (hit.gameObject == this.gameObject) continue;
             
-                Buzzvenom c = hit.GetComponent<Buzzvenom>();
-                if (c != null)
+                T t = hit.GetComponent<T>();
+                if (t != null)
                 {
-                    float dist = Vector3.Distance(transform.position, c.transform.position);
+                    float dist = Vector3.Distance(transform.position, t.transform.position);
                     if (dist < minDist)
                     {
                         minDist = dist;
-                        closest = c;
+                        closest = t;
                     }
                 }
         }
@@ -93,7 +94,7 @@ public class Redbolt : Enemy, IInteractable
     {
         if (timer > 0) return;
 
-        Collider[] hits = Physics.OverlapSphere(transform.position, seeRange);
+        /*Collider[] hits = Physics.OverlapSphere(transform.position, seeRange);
         List<Character> ListTarget = new List<Character>();
         foreach (Collider hit in hits)
         {
@@ -106,7 +107,6 @@ public class Redbolt : Enemy, IInteractable
                 }
             }
         }
-
         Character _target = null;
         float targetDistance = Mathf.Infinity;
 
@@ -119,9 +119,11 @@ public class Redbolt : Enemy, IInteractable
                 targetDistance = distacne;
                 _target = c;
             }
-        }
+        }*/
 
-        if (_target != null)
+        Character _target = FindClosestTarget<Buzzvenom02>();
+
+        if (_target == null || timer > 0) return;
         {
             Turn(_target.transform.position - transform.position);
             agent.SetDestination(_target.transform.position);

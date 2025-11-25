@@ -61,7 +61,7 @@ public class Identity : MonoBehaviour
     {
         get
         {
-            Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 2.5f);
+            Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 2.2f);
 
             if (hit.collider != null)
             {
@@ -78,7 +78,7 @@ public class Identity : MonoBehaviour
     }
 
     float sphereRadius = 0.5f;
-    float maxDistance = 1f;
+    float maxDistance = 2.5f;
 
     private void Start()
     {
