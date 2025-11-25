@@ -4,10 +4,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestManager : MonoBehaviour
+public class QuestManagerScene1 : MonoBehaviour
 {
     //Set up
-    public static QuestManager instance;
+    public static QuestManagerScene1 instance;
     public string LoadScene1Name;
     public int currentQuestProgress = 0;
 
@@ -47,19 +47,29 @@ public class QuestManager : MonoBehaviour
         Debug.Log("Quest Started");
     }
 
+    
     public void OnGoingQuest(int progress)
     {
         //Quest Info
         QuestProgressBar.value = currentQuestProgress;
         currentQuestProgress += progress;
         Debug.Log($"Kills Count = {currentQuestProgress}");
-        if (IsActive == true && currentQuestProgress >= 3)
+        if (IsActive == true && currentQuestProgress == 3)
         {
 
-            //QuestText.text = "Quest: Completed! (Talk to Merchant Governor to countinue)";
+            QuestText.text = "Quest: Completed! (Talk to Merchant Governor to countinue)";
             CompletedQuest();
         }
     }
+
+    //public void ClearedQuest()
+    //{
+    //    //Load new scene
+    //    IsActive = false;
+    //    QuestPanel.gameObject.SetActive(false);
+    //    //LoadSceneManager.instance.LoadNewScene(LoadScene1Name);
+    //    Debug.Log("Quest Completed");
+    //}
 
     public void CompletedQuest()
     {
@@ -68,7 +78,10 @@ public class QuestManager : MonoBehaviour
         QuestPanel.gameObject.SetActive(false);
         LoadSceneManager.instance.LoadNewScene(LoadScene1Name);
         Debug.Log("Quest Completed");
+        //MerchantGovernor.instance.GiveRewardScene1();
     }
+
+
 
     //private List<IQuest> _activeObjectives = new List<IQuest>();
 

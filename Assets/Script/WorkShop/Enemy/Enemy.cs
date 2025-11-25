@@ -121,12 +121,13 @@ public abstract class Enemy : Character
         timer = TimeToAttack;
     }
 
+    //Move to enemy that according to the scene
     public override void TakeDamage(int amount)
     {
         health -= amount;
         if (health <= 0)
         {
-            QuestManager.instance.OnGoingQuest(1);
+            QuestManagerScene1.instance.OnGoingQuest(1);
             //SoundManager.instance.PlaySFX(SoundDefeat);
             Destroy(gameObject);
         }
