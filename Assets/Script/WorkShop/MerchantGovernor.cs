@@ -103,7 +103,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
     //{
     //    if Talk
     //    Debug.Log("Reward Scene 1 Given");
-    //    TalkingText.text = TalkingLines[6];
+    //    TalkingText.text = TalkingLines[];
     //    QuestManagerScene1.instance.ClearedQuest();
     //    LoadSceneManager.instance.LoadNewScene(LoadScene1Name);
     //}

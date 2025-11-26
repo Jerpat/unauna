@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3610853411319017455}
   - component: {fileID: 5110971536834433049}
+  - component: {fileID: 7645531143113335789}
+  - component: {fileID: 7101342027419936669}
   m_Layer: 0
   m_Name: Gemstone_Amethyst
   m_TagString: Untagged
@@ -56,6 +58,41 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!135 &7645531143113335789
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097354356065876428}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7101342027419936669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097354356065876428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c444648fa008d42ba6b1ddcec29b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Glowing Crystal
+  value: 0
 --- !u!1 &6216276483668303704
 GameObject:
   m_ObjectHideFlags: 0

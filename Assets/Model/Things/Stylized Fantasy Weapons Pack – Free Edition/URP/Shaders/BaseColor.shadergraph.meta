@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 3e5948ae4c5f3b245b92248ed04f2f38
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 329086
+  packageName: "Stylized Fantasy Weapons Pack \u2013 Free Edition"
+  packageVersion: 1.0
+  assetPath: "Assets/Stylized Fantasy Weapons Pack \u2013 Free Edition/URP/Shaders/BaseColor.shadergraph"
+  uploadId: 779174
