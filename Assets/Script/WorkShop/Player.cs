@@ -18,15 +18,15 @@ public class Player : Character
     Vector3 _inputDirection;
     
     float mouseSensitivity = 2f;
-    float minLookX = -90f;
-    float maxLookX = 60f;
+    float minLookX = -20f;
+    float maxLookX = 15f;
     private float currentLookX = 0f;
     private Rigidbody mRig;
 
     bool _isRunning = false;
     bool _isAttacking = false;
     bool _isBlocking = false;
-    bool _isInteract = false;
+    bool _isInteracting = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,7 +46,7 @@ public class Player : Character
         Turn(_inputDirection);
         Attack(_isAttacking);
         Block(_isBlocking);
-        Interact(_isInteract);
+        Interact(_isInteracting);
     }
     public void Update()
     {
@@ -78,8 +78,8 @@ public class Player : Character
 
         _inputDirection = new Vector3(h, 0, v);
         _isAttacking = Input.GetMouseButtonDown(0);
-        _isBlocking = Input.GetMouseButtonDown(1);
-        _isInteract = Input.GetKeyDown(KeyCode.E);
+        _isBlocking = Input.GetMouseButton(1);
+        _isInteracting = Input.GetKeyDown(KeyCode.E);
         _isRunning = Input.GetKey(KeyCode.LeftShift);
 
         //add input to Interact
@@ -93,21 +93,13 @@ public class Player : Character
         }*/
     }
 
-    // setting holding in right hand
-    /*private void HandRightInput()
-    {
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-
-        _inputDirection = new Vector3(x, 0, y);
-        _isBlocking = Input.GetMouseButtonDown(1);
-    }*/
-
     public void Attack(bool isAttacking)
     {
-        if (isAttacking)
+        if (!isAttacking) return;
+
+        /*if (isAttacking)
         {
-            /*animator.SetTrigger("Attack");
+            animator.SetTrigger("Attack");
             //edit to Idestoryable, so, not only enemy that player can destroy
             //Enemy e = InFront as Enemy;
             var e = InFront as IDestroyable;
@@ -117,29 +109,45 @@ public class Player : Character
                 Debug.Log($"{gameObject.name} attacks for {Damage} damage.");
             }
             _isAttacking = false;*/
-
-            animator.SetTrigger("Attack");
-
-            Ray ray = new Ray(camera.position, camera.forward);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 100f))
-            {
-                var e = hit.collider.GetComponent<IDestroyable>();
-                if (e != null)
-                {
-                    e.TakeDamage(Damage);
-                    Debug.Log($"{gameObject.name} attacks {e} for {Damage} damage.");
-                }
-            }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            animator.Play("Attack", 0, 0f);
         }
+        else
+        {
+            animator.SetTrigger("Attack");
+        }
+
+        var e = InFront as IDestroyable;
+        if (e != null)
+        {
+            e.TakeDamage(Damage);
+            Debug.Log($"{gameObject.name} attacks for {Damage} damage.");
+        }
+        _isAttacking = false;
+
+        /*animator.SetTrigger("Attack");
+
+        Ray ray = new Ray(camera.position, camera.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            var e = hit.collider.GetComponent<IDestroyable>();
+            if (e != null)
+            {
+                e.TakeDamage(Damage);
+                Debug.Log($"{gameObject.name} attacks {e} for {Damage} damage.");
+            }
+        }*/
+    
     }
 
     private void Block(bool isBlocking)
     {
         if (isBlocking)
         {
-            animator.SetTrigger("Block");
+            animator.SetBool("Block",isBlocking);
             Debug.Log($"{gameObject.name} blocks damage.");
         }
     }
@@ -153,7 +161,7 @@ public class Player : Character
             {
                 i.Interact(this);
             }
-            _isInteract = false;
+            _isInteracting = false;
         }
     }
 
@@ -223,6 +231,4 @@ public class Player : Character
         currentLookX = Mathf.Clamp(currentLookX, minLookX, maxLookX);
         camera.localRotation = Quaternion.Euler(currentLookX, 0f, 0f);
     }
-
-    ///////////////add method Interact///////////////
 }

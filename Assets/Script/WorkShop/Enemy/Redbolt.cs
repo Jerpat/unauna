@@ -35,7 +35,7 @@ public class Redbolt : Enemy, IInteractable
 
         Attack(player);*/
 
-        Character closestT = FindClosestTarget<Buzzvenom02>();
+        Character closestT = FindClosestTarget<Buzzvenom>();
         if (closestT != null)
         {
             float distance = Vector3.Distance(transform.position, closestT.transform.position);
@@ -121,7 +121,7 @@ public class Redbolt : Enemy, IInteractable
             }
         }*/
 
-        Character _target = FindClosestTarget<Buzzvenom02>();
+        Character _target = FindClosestTarget<Buzzvenom>();
 
         if (_target == null || timer > 0) return;
         {
