@@ -19,21 +19,21 @@ public class BuffSkillMoveSpeed : Skill
     {
         timer = Duration;
 
-        OriginalSpeed = character.movementSpeed;
-        targetSpeed = character.movementSpeed + SpeedIncreaseAmount;
+        OriginalSpeed = character.walkSpeed;
+        targetSpeed = character.walkSpeed + SpeedIncreaseAmount;
         Debug.Log("Activate " + skillName);
     }
 
     public override void Deactivate(Character character)
     {
-        character.movementSpeed = OriginalSpeed;
+        character.walkSpeed = OriginalSpeed;
         Debug.Log("Deactivate : " + skillName);
     }
 
     public override void UpdateSkill(Character charater)
     {
         timer -= Time.deltaTime;
-        charater.movementSpeed = targetSpeed;
+        charater.walkSpeed = targetSpeed;
         if (timer <= 0)
         {
             Deactivate(charater);

@@ -9,7 +9,7 @@ public class EnemyMovetoPlayer : Enemy
 
     private NavMeshAgent agent;*/
 
-    private void Update()
+    /*private void Update()
     {
         if (player == null)
         {
@@ -28,7 +28,7 @@ public class EnemyMovetoPlayer : Enemy
         {
             animator.SetBool("Attack", false);
             Vector3 direction = (player.transform.position - transform.position).normalized;
-            Move(direction);
+            Move(direction, moveX, moveZ, isRun);
         }
     }
     /*private void Update()

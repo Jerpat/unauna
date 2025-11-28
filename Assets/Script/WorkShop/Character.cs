@@ -19,7 +19,7 @@ public class Character : Identity, IDestroyable
 
     public int Damage = 10;
     public int Defense = 10;
-    public float movementSpeed;
+    public float walkSpeed;
 
     protected Animator animator;
     protected Rigidbody rb;
@@ -93,9 +93,7 @@ public class Character : Identity, IDestroyable
     }
     protected virtual void Move(Vector3 direction)
     {
-        rb.linearVelocity = new Vector3(direction.x * movementSpeed, rb.linearVelocity.y, direction.z * movementSpeed);
+        rb.linearVelocity = new Vector3(direction.x * walkSpeed, rb.linearVelocity.y, direction.z * walkSpeed);
         animator.SetFloat("Speed", rb.linearVelocity.magnitude);
     }
-
-
 }
