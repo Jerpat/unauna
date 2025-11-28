@@ -5,6 +5,9 @@ using UnityEngine.AI;
 public class Mimic : Enemy, IInteractable, IDestroyable
 {
     public TMP_Text interactionTextUI;
+
+    public GameObject DropItem;
+
     public bool canTalk = true;
     public bool isInteractable { get => canTalk; set => canTalk = value; }
 
@@ -89,5 +92,16 @@ public class Mimic : Enemy, IInteractable, IDestroyable
 
         result = Vector3.zero;
         return false;
+    }
+
+    public override void TakeDamage(int amount)
+    {        
+        health -= amount;
+
+        if (health <= 0)
+        {
+            GameObject g = Instantiate(DropItem, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 }

@@ -688,25 +688,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.42, z: 0}
---- !u!114 &114678770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 114678767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 678a5594252fb5b4a8ad4461a866559a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _name: Slime
-  _maxHealth: 10
-  Damage: 10
-  Defense: 10
-  movementSpeed: 0
-  seeRange: 7
-  atkRange: 5
 --- !u!54 &114678771
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1941,9 +1922,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1931298151966786, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 114678771}
-    - targetCorrespondingSourceObject: {fileID: 1931298151966786, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 114678770}
     - targetCorrespondingSourceObject: {fileID: 1931298151966786, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 114678769}
@@ -3307,20 +3285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c577bdd5c132c4994519676329f30a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
-  _maxHealth: 100
-  Damage: 10
-  Defense: 10
-  movementSpeed: 0
-  seeRange: 10
-  atkRange: 5
-  isReturnToOrigin: 0
-  isPatrol: 1
-  waypoints:
-  - {fileID: 1165771058}
-  - {fileID: 44484795}
-  - {fileID: 1406858713}
-  - {fileID: 1165771058}
 --- !u!54 &551910604
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3780,7 +3744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1931298151966786, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4047972025199878, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3831,10 +3795,10 @@ PrefabInstance:
       addedObject: {fileID: 1727691255}
     - targetCorrespondingSourceObject: {fileID: 1931298151966786, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1727691254}
+      addedObject: {fileID: 1727691258}
     - targetCorrespondingSourceObject: {fileID: 1931298151966786, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1727691258}
+      addedObject: {fileID: 1727691261}
   m_SourcePrefab: {fileID: 100100000, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
 --- !u!1 &704371596
 GameObject:
@@ -7485,13 +7449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678a5594252fb5b4a8ad4461a866559a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Slime
-  _maxHealth: 10
-  Damage: 10
-  Defense: 10
-  movementSpeed: 0
-  seeRange: 7
-  atkRange: 5
 --- !u!54 &1582746255
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7783,25 +7740,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1931298151966786, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
   m_PrefabInstance: {fileID: 699879006}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1727691254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727691253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 678a5594252fb5b4a8ad4461a866559a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _name: Slime
-  _maxHealth: 10
-  Damage: 10
-  Defense: 10
-  movementSpeed: 0
-  seeRange: 7
-  atkRange: 5
 --- !u!54 &1727691255
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7855,6 +7793,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4047972025199878, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
   m_PrefabInstance: {fileID: 699879006}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1727691261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727691253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24497f1b423b6314ebccc37ce033d508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: 
+  _maxHealth: 100
+  Damage: 10
+  Defense: 10
+  movementSpeed: 0
+  seeRange: 10
+  atkRange: 5
+  isReturnToOrigin: 0
+  isPatrol: 0
+  waypoints: []
 --- !u!1001 &1729820277
 PrefabInstance:
   m_ObjectHideFlags: 0

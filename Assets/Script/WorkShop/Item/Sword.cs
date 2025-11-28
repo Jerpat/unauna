@@ -4,6 +4,8 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class Sword : Item
 {
     public int Damage = 25;
+    float x = 0.05f;
+
     public Sword(Sword sword) : base(sword)
     {
         Damage = sword.Damage;
@@ -24,6 +26,9 @@ public class Sword : Item
 
         Vector3 swordUp = new Vector3(90, 0, 0);
         transform.localRotation = Quaternion.Euler(swordUp); // rotate item to right angle
+
+        /*Vector3 swordUpP = new Vector3(-x, 0, 0);
+        transform.localPosition = swordUpP; // right position*/
 
         player.Damage += Damage;
 
