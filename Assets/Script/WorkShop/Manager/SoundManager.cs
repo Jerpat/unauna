@@ -1,23 +1,33 @@
 using UnityEngine;
-using System.Collections.Generic;
 
-// กำหนดให้เป็น sealed เพื่อป้องกันการสืบทอด
 public class SoundManager : MonoBehaviour
 {
-    // 1. Singleton Instance
     public static SoundManager instance;
 
     [Header("Audio Sources")]
-    // Audio Source สำหรับเพลงประกอบ (Looping)
     public AudioSource musicSource;
-    // Audio Source สำหรับเอฟเฟกต์เสียง (Non-Looping)
     public AudioSource sfxSource;
 
     [Header("Default Audio Clips")]
     public AudioClip defaultButtonClick;
     public AudioClip defaultBackgroundMusic;
 
-    // 3. Singleton Initialization
+    [Header("Footstep Sounds")]
+    public AudioClip grassStep;
+    public AudioClip sandStep;
+    public AudioClip stoneStep;
+    public AudioClip waterStep;
+
+    [Header("Footstep Settings")]
+    public float walkInterval = 0.4f;
+    public float runInterval = 0.25f;
+
+    private float stepTimer = 0f;
+
+    [Header("SFX")]
+    public AudioClip hitEnemySFX;
+
+
     private void Awake()
     {
         if (instance == null)
@@ -33,67 +43,62 @@ public class SoundManager : MonoBehaviour
 
             DontDestroyOnLoad(gameObject);
         }
-        else if (instance != this)
+        else
         {
             Destroy(gameObject);
         }
     }
 
-    // ------------------- Music Controls -------------------
-
-    /// <summary>
-    /// เล่นเพลงประกอบใหม่
-    /// </summary>
     public void PlayMusic(AudioClip clip)
     {
-        if (clip == null || musicSource == null) return;
-
+        if (clip == null) return;
         musicSource.clip = clip;
         musicSource.Play();
     }
 
-    public void StopMusic()
-    {
-        if (musicSource != null)
-        {
-            musicSource.Stop();
-        }
-    }
-
-    // ------------------- SFX Controls -------------------
-
-    /// <summary>
-    /// เล่นเอฟเฟกต์เสียงแบบครั้งเดียวจบ (One-Shot)
-    /// </summary>
     public void PlaySFX(AudioClip clip)
     {
-        if (clip == null || sfxSource == null) return;
-
-        // ใช้ PlayOneShot เพื่อให้เล่นหลายเสียงทับซ้อนกันได้
+        if (clip == null) return;
         sfxSource.PlayOneShot(clip);
     }
 
-    // ------------------- Volume Controls -------------------
-
-    /// <summary>
-    /// กำหนดระดับเสียงหลักของเพลงประกอบ (0.0 ถึง 1.0)
-    /// </summary>
-    public void SetMusicVolume(float volume)
+    public void PlayFootstep(string groundType, bool isRunning)
     {
-        if (musicSource != null)
+        stepTimer -= Time.deltaTime;
+        if (stepTimer > 0) return;
+
+        AudioClip clip;
+
+        if (groundType == "Grass")
         {
-            musicSource.volume = volume;
+            clip = grassStep;
         }
-    }
-
-    /// <summary>
-    /// กำหนดระดับเสียงหลักของเอฟเฟกต์เสียง (0.0 ถึง 1.0)
-    /// </summary>
-    public void SetSFXVolume(float volume)
-    {
-        if (sfxSource != null)
+        else if (groundType == "Sand")
         {
-            sfxSource.volume = volume;
+            clip = sandStep;
+        }
+        else if (groundType == "Stone")
+        {
+            clip = stoneStep;
+        }
+        else if (groundType == "Water")
+        {
+            clip = waterStep;
+        }
+        else
+        {
+            clip = grassStep;
+        }
+
+        sfxSource.PlayOneShot(clip);
+
+        if (isRunning)
+        {
+            stepTimer = runInterval;
+        }
+        else
+        {
+            stepTimer = walkInterval;
         }
     }
 }

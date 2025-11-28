@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Character
 {
@@ -15,18 +16,28 @@ public class Player : Character
     public Sword currentWeapon;
     public List<Item> inventory = new List<Item>();
 
+    [Header("Starting Items")]
+    public Potion potionPrefab;
+    public int startingPotionCount = 3;
+
+   [Header("UI")]
+    public Text potionCountText;
+
     Vector3 _inputDirection;
     
     float mouseSensitivity = 2f;
-    float minLookX = -20f;
-    float maxLookX = 15f;
+    float minLookX = -2f;
+    float maxLookX = 13f;
     private float currentLookX = 0f;
     private Rigidbody mRig;
+
+    private string currentGround = "Default";
 
     bool _isRunning = false;
     bool _isAttacking = false;
     bool _isBlocking = false;
     bool _isInteracting = false;
+    bool _isHealing = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,6 +46,7 @@ public class Player : Character
         mRig = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         health = maxHealth;
+        UpdatePotionUI();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -51,6 +63,11 @@ public class Player : Character
     public void Update()
     {
         HandleInput();
+        if (_isHealing)
+        {
+            UsePotion();
+            _isHealing = false;
+        }
     }
     public void AddItem(Item item)
     {
@@ -77,10 +94,12 @@ public class Player : Character
         }
 
         _inputDirection = new Vector3(h, 0, v);
+        _isRunning = Input.GetKey(KeyCode.LeftShift);
         _isAttacking = Input.GetMouseButtonDown(0);
         _isBlocking = Input.GetMouseButton(1);
         _isInteracting = Input.GetKeyDown(KeyCode.E);
-        _isRunning = Input.GetKey(KeyCode.LeftShift);
+        _isHealing = Input.GetKeyDown(KeyCode.Q);
+
 
         //add input to Interact
         /*if (Input.GetKeyDown(KeyCode.E))
@@ -123,6 +142,7 @@ public class Player : Character
         {
             e.TakeDamage(Damage);
             Debug.Log($"{gameObject.name} attacks for {Damage} damage.");
+            SoundManager.instance.PlaySFX(SoundManager.instance.hitEnemySFX);
         }
         _isAttacking = false;
 
@@ -185,6 +205,25 @@ public class Player : Character
         GameManager.instance.UpdateHealthText(health);
         GameManager.instance.UpdateHealthBar(health, maxHealth);
     }
+    private void UsePotion()
+    {
+        Potion potion = inventory.Find(item => item is Potion) as Potion;
+
+        if (potion != null)
+        {
+            Heal(potion.healAmount); 
+            inventory.Remove(potion); 
+            UpdatePotionUI();     
+            Debug.Log($"Used potion.");
+        }
+    }
+
+    public void UpdatePotionUI()
+    {
+        int potionCount = inventory.FindAll(item => item is Potion).Count;
+        if (potionCountText != null)
+            potionCountText.text = $"Potions: {potionCount}";
+    }
 
     protected override void Turn(Vector3 direction)
     {
@@ -216,6 +255,19 @@ public class Player : Character
         {
             rb.linearVelocity = new Vector3(moveDirection.x * walkSpeed, rb.linearVelocity.y, moveDirection.z * walkSpeed);
             animator.SetFloat("Speed", new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z).magnitude);
+        }
+
+        if (direction.magnitude > 0.1f)
+        {
+            CheckGroundType();
+            SoundManager.instance.PlayFootstep(currentGround, _isRunning);
+        }
+    }
+    void CheckGroundType()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 2f))
+        {
+            currentGround = hit.collider.tag;
         }
     }
 

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ally
   - Enemy
+  - Sand
+  - Water
+  - Stone
   layers:
   - Default
   - TransparentFX
