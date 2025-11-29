@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; // สำคัญมากสำหรับ Scene Management
 
@@ -90,5 +91,10 @@ public class LoadSceneManager : MonoBehaviour
     public string GetCurrentSceneName()
     {
         return SceneManager.GetActiveScene().name;
+    }
+    public void OnStartGameClicked()
+    {
+        SceneManager.LoadScene(3);
+        Debug.Log("Test");
     }
 }
