@@ -92,9 +92,4 @@ public class LoadSceneManager : MonoBehaviour
     {
         return SceneManager.GetActiveScene().name;
     }
-    public void OnStartGameClicked()
-    {
-        SceneManager.LoadScene(3);
-        Debug.Log("Test");
-    }
 }

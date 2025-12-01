@@ -12,7 +12,7 @@ public class CollectableItem : Item
         base.OnCollected(player);
         player.AddItem(this);
         gameObject.SetActive(false);
-        if (gameObject.name == "Test Item 1")
+        if (gameObject.name == "Gemstone_Amethyst")
         {
             QuestManagerScene2.instance.OnGoingQuest(1);
         }

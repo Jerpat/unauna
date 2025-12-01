@@ -1,20 +1,18 @@
-using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestManagerScene2 : MonoBehaviour
+public class QuestManagerScene3 : MonoBehaviour
 {
     //Set up
-    public static QuestManagerScene2 instance; //
+    public static QuestManagerScene3 instance; //
     public string LoadSceneName;
-    public int currentQuest2Progress = 0;
+    public int currentQuest3Progress = 0;
 
     //Quest Text 
     public GameObject QuestPanel;
     public TMP_Text QuestText;
-    public Slider Quest2ProgressBar;
+    public Slider Quest3ProgressBar;
 
     //Check if the quest is on going or not
     public bool IsActive = false;
@@ -42,18 +40,18 @@ public class QuestManagerScene2 : MonoBehaviour
     {
         //Quest UI Setting
         QuestPanel.gameObject.SetActive(true);
-        QuestText.text = "Quest: Find and Collect Glowing Crystal"; //+ "(" + currentQuestProgress + "/3)";
+        QuestText.text = "Quest: Kill Enemy and Fix the road?!"; //+ "(" + currentQuestProgress + "/3)";
         IsActive = true;
-        Debug.Log("Quest 2 Started");
+        Debug.Log("Quest 3 Started");
     }
 
     public void OnGoingQuest(int progress)
     {
         //Quest Info
-        Quest2ProgressBar.value = currentQuest2Progress;
-        currentQuest2Progress += progress;
-        Debug.Log("Currently Quest: Find Glowing Crystal"); //
-        if (IsActive == true && currentQuest2Progress > 0) //
+        Quest3ProgressBar.value = currentQuest3Progress;
+        currentQuest3Progress += progress;
+        Debug.Log("Currently Quest: Kill Enemy and Fix the road?"); //
+        if (IsActive == true && currentQuest3Progress > 0) //
         {
 
             //QuestText.text = "Quest: Completed! (Talk to Merchant Governor to countinue)";
@@ -67,6 +65,7 @@ public class QuestManagerScene2 : MonoBehaviour
         IsActive = false;
         QuestPanel.gameObject.SetActive(false);
         LoadSceneManager.instance.LoadNewScene(LoadSceneName);
-        Debug.Log("Quest 2 Completed");
+        Debug.Log("Quest 3 Completed");
     }
+
 }

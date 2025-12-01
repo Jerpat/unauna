@@ -44,7 +44,7 @@ public class QuestManagerScene1 : MonoBehaviour
         QuestPanel.gameObject.SetActive(true);
         QuestText.text = "Quest: Kill all Slimes!"; //+ "(" + currentQuestProgress + "/3)";
         IsActive = true;
-        Debug.Log("Quest Started");
+        Debug.Log("Quest 1 Started");
     }
 
     
@@ -77,7 +77,7 @@ public class QuestManagerScene1 : MonoBehaviour
         IsActive = false;
         QuestPanel.gameObject.SetActive(false);
         LoadSceneManager.instance.LoadNewScene(LoadScene1Name);
-        Debug.Log("Quest Completed");
+        Debug.Log("Quest 1 Completed");
         //MerchantGovernor.instance.GiveRewardScene1();
     }
 

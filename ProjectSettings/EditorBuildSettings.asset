@@ -20,6 +20,27 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/QuestScene3.unity
     guid: 485866f232d80fb47abce2af5f530883
+  - enabled: 1
+    path: Assets/Scenes/00Home.unity
+    guid: 1f979faa094256a48ae9ab84c398a623
+  - enabled: 1
+    path: Assets/Scenes/01Dungeon.unity
+    guid: 4e93590ad79d700459ae5e5832535d3b
+  - enabled: 1
+    path: Assets/Scenes/02Desert Test UI Items.unity
+    guid: b0526aa9a9dd31f4ebc32df3ad7aba9e
+  - enabled: 1
+    path: Assets/Scenes/02Desert.unity
+    guid: 73fcad38d6dfae14eb51ad62bcdd678c
+  - enabled: 1
+    path: Assets/Scenes/03Forest.unity
+    guid: 1c7c417b0f086a24a9483c01b0e59545
+  - enabled: 1
+    path: Assets/Scenes/04Win.unity
+    guid: fd8712af2168ddb40a99b853a5798bdb
+  - enabled: 1
+    path: Assets/Scenes/05Lose.unity
+    guid: 9ef7488b431c4ea47bd4de2eba45be1c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

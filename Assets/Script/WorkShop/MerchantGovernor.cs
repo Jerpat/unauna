@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class MerchantGovernor : Character, IInteractable, ITalkable
 {
     //SetUp
-    public static MerchantGovernor instance;
+    //public static MerchantGovernor instance;
+    private string currentScene;
     public bool canTalk = true;
     public bool canInteract = true;
     private bool Quest1 = false;
@@ -17,21 +18,22 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
     //Talking Conversations Text 
     public GameObject TalkingPanel;
     public TMP_Text TalkingText;
+    public TMP_Text TalkingNameText;
     public string[] TalkingLines;
     private int index = 0;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
+    //private void Awake()
+    //{
+    //    if (instance == null)
+    //    {
+    //        instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //    else if (instance != this)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     public bool isInteractable { get => canInteract; set => canInteract = value; }
     public bool isTalkable { get => canTalk; set => canTalk = value; }
@@ -47,6 +49,9 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
 
         //UI Setting
         TalkingPanel.gameObject.SetActive(false);
+
+        currentScene = SceneManager.GetActiveScene().name;
+        Debug.Log("Current Scene = " + currentScene);
     }
     public void Update()
     {
@@ -70,6 +75,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
     {
         //UI Setting
         TalkingPanel.gameObject.SetActive(true);
+        TalkingNameText.text = "Merchant Governor";
 
         if (index < TalkingLines.Length)
         {
@@ -77,11 +83,24 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
             index++;
 
         }
-        else
+        else if (currentScene == "01Dungeon")
+        {
+            TalkingPanel.gameObject.SetActive(false);
+            GiveQuestScene1();
+            Debug.Log("Conversation Ended, Give Quest Scene 1");
+        }
+        //else if (currentScene == "02Desert")
+        else if (currentScene == "02Desert Test UI Items")
         {
             TalkingPanel.gameObject.SetActive(false);
             GiveQuestScene2();
-            Debug.Log("Conversation Ended");
+            Debug.Log("Conversation Ended, Give Quest Scene 2");
+        }
+        else if (currentScene == "03Forest")
+        {
+            TalkingPanel.gameObject.SetActive(false);
+            GiveQuestScene3();
+            Debug.Log("Conversation Ended, Give Quest Scene 3");
         }
 
     }
@@ -97,6 +116,12 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
     {
         QuestManagerScene2.instance.StartQuest();
         Debug.Log("Quest Scene 2 Given");
+    }
+
+    public void GiveQuestScene3()
+    {
+        QuestManagerScene3.instance.StartQuest();
+        Debug.Log("Quest Scene 3 Given");
     }
 
     //public void GiveRewardScene1()
