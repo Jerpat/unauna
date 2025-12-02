@@ -129,7 +129,10 @@ public abstract class Enemy : Character
         health -= amount;
         if (health <= 0)
         {
-            QuestManagerScene1.instance.OnGoingQuest(1);
+            if (gameObject.name == "Buzzvenom")
+            {
+                QuestManagerScene2.instance.OnGoingQuest(1);
+            }
             //SoundManager.instance.PlaySFX(SoundDefeat);
             Destroy(gameObject);
         }

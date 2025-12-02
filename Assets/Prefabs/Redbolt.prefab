@@ -485,4 +485,10 @@ MonoBehaviour:
   walkSpeed: 0
   seeRange: 10
   atkRange: 3
-  canTalk: 1
+  interactionTextUI: {fileID: 8557041696450012303}
+  TalkingPanel: {fileID: 0}
+  TalkingText: {fileID: 0}
+  TalkingNameText: {fileID: 0}
+  TalkingLines:
+  - Bluebuzz are trying to steal our area...
+  - Please help us fighting!
