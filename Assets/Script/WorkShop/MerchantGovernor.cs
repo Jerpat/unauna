@@ -145,7 +145,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         else if (quest2State == QuestState.Given && QuestManagerScene2.instance.QuestIsCompleted == false)
         {
             TalkingPanel.SetActive(true);
-            TalkingText.text = "Let's [Help RedBuzz and Defeat all BlueBolts]!";
+            TalkingText.text = "Let's [Help Redbolt and Defeat all Buzzvenoms]!";
             SingleTalkingLine = true;
         }
         else if (quest2State == QuestState.Given && QuestManagerScene2.instance.QuestIsCompleted == true)
@@ -155,6 +155,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
             TalkingText.text = "Phewww I thought we all going to die here.. Anyway! Let's countinue";
             quest2State = QuestState.TurnedIn;
             Debug.Log("Quest 2 Turned in");
+            return;
         }
     }
 
@@ -169,16 +170,17 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         else if (quest3State == QuestState.Given && QuestManagerScene3.instance.QuestIsCompleted == false)
         {
             TalkingPanel.SetActive(true);
-            TalkingText.text = "Let's [Help RedBuzz and Defeat all BlueBolts]!";
+            TalkingText.text = "[A Key] must be around here... Hmmm I don't know where";
             SingleTalkingLine = true;
         }
         else if (quest3State == QuestState.Given && QuestManagerScene3.instance.QuestIsCompleted == true)
         {
             QuestManagerScene2.instance.ClearedQuest();
             TalkingPanel.SetActive(true);
-            TalkingText.text = "Phewww I thought we all going to die here.. Anyway! Let's countinue";
+            TalkingText.text = "Finally! Now we can enter Unauna city";
             quest3State = QuestState.TurnedIn;
-            Debug.Log("Quest 2 Turned in");
+            Debug.Log("Quest 3 Turned in");
+            return;
         }
     }
 

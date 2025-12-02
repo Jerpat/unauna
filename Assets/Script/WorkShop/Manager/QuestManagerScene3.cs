@@ -6,7 +6,6 @@ public class QuestManagerScene3 : MonoBehaviour
 {
     //Set up
     public static QuestManagerScene3 instance; 
-    public string LoadSceneName;
     public int currentQuest3Progress = 0;
     public GameObject BarrierWall3;
 
@@ -42,7 +41,7 @@ public class QuestManagerScene3 : MonoBehaviour
     {
         //Quest UI Setting
         QuestPanel.gameObject.SetActive(true);
-        QuestText.text = "Quest: Kill Enemy and Fix the road?!"; //+ "(" + currentQuestProgress + "/3)";
+        QuestText.text = "Quest: Kill [Monster] and Take [A Key]"; //+ "(" + currentQuestProgress + "/3)";
         IsActive = true;
         Debug.Log("Quest 3 Started");
     }
@@ -52,7 +51,7 @@ public class QuestManagerScene3 : MonoBehaviour
         //Quest Info
         Quest3ProgressBar.value = currentQuest3Progress;
         currentQuest3Progress += progress;
-        Debug.Log("Currently Quest: Kill Enemy and Fix the road?"); //
+        Debug.Log("Currently Quest: Find A Key that drop from Monster"); //
         if (IsActive == true && currentQuest3Progress > 0) //
         {
 

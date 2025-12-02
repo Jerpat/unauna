@@ -10,7 +10,6 @@ public class QuestManagerScene2 : MonoBehaviour
 {
     //Set up
     public static QuestManagerScene2 instance; 
-    public string LoadScene3Name;
     public int currentQuest2Progress = 0;
     public GameObject BarrierWall2;
 
