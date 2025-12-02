@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : Character
@@ -198,6 +199,11 @@ public class Player : Character
         }
         GameManager.instance.UpdateHealthText(health);
         GameManager.instance.UpdateHealthBar(health, maxHealth);
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(05);
+            Destroy(gameObject);
+        }
     }
 
     public override void Heal(int amount)

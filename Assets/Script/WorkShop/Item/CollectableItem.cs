@@ -12,9 +12,13 @@ public class CollectableItem : Item
         base.OnCollected(player);
         player.AddItem(this);
         gameObject.SetActive(false);
-        if (gameObject.name == "Gemstone_Amethyst")
+        if (gameObject.name == "Glowing_Crystal")
         {
             QuestManagerScene1.instance.OnGoingQuest(1);
+        }
+        if (gameObject.name == "A_Key")
+        {
+            QuestManagerScene3.instance.OnGoingQuest(1);
         }
     }
 

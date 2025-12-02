@@ -10,7 +10,6 @@ public class QuestManagerScene2 : MonoBehaviour
 {
     //Set up
     public static QuestManagerScene2 instance; 
-    public string LoadScene3Name;
     public int currentQuest2Progress = 0;
     public GameObject BarrierWall2;
 
@@ -46,7 +45,7 @@ public class QuestManagerScene2 : MonoBehaviour
     {
         //Quest UI Setting
         QuestPanel.gameObject.SetActive(true);
-        QuestText.text = "Quest: Find and Collect Glowing Crystal"; //+ "(" + currentQuestProgress + "/3)";
+        QuestText.text = "Quest 2: Kill all Buzzvenoms"; //+ "(" + currentQuestProgress + "/3)";
         IsActive = true;
         Debug.Log("Quest 2 Started");
     }
@@ -56,8 +55,8 @@ public class QuestManagerScene2 : MonoBehaviour
         //Quest Info
         currentQuest2Progress += progress;
         Quest2ProgressBar.value = currentQuest2Progress;
-        Debug.Log("Currently Quest: Find Glowing Crystal"); //
-        if (IsActive == true && currentQuest2Progress > 0) //
+        Debug.Log($"Kills Count = {currentQuest2Progress}");
+        if (IsActive == true && currentQuest2Progress == 3) 
         {
 
             //QuestText.text = "Quest: Completed! (Talk to Merchant Governor to countinue)";
@@ -68,15 +67,6 @@ public class QuestManagerScene2 : MonoBehaviour
             QuestIsCompleted = true;
         }
     }
-
-    //public void CompletedQuest()
-    //{
-    //    //Load new scene
-    //    IsActive = false;
-    //    QuestPanel.gameObject.SetActive(false);
-    //    LoadSceneManager.instance.LoadNewScene(LoadSceneName);
-    //    Debug.Log("Quest 2 Completed");
-    //}
 
     public void CompletedQuest()
     {

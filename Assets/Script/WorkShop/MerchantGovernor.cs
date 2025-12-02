@@ -48,7 +48,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
     }
     public void Update()
     {
-        if (GetDistancePlayer() >= 2f || !canInteract)
+        if (GetDistancePlayer() >= 3f || !canInteract)
         {
             interactionTextUI.gameObject.SetActive(false);
         }
@@ -120,14 +120,14 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         else if (quest1State == QuestState.Given && QuestManagerScene1.instance.IsActive == true)
         {
             TalkingPanel.SetActive(true);
-            TalkingText.text = "Quick! [Find a Glowing Stone] and give it to me!";
+            TalkingText.text = "Quick! [Go Get a Glowing Crystal] and handle it to me!";
             SingleTalkingLine = true;
         }
-        else if (quest1State == QuestState.Completed && QuestManagerScene1.instance.IsActive == false)
+        else if (quest1State == QuestState.Given && QuestManagerScene1.instance.QuestIsCompleted == true)
         {
             QuestManagerScene1.instance.ClearedQuest();
             TalkingPanel.SetActive(true);
-            TalkingText.text = "Oh.. You Found it! Now I can make a lantern and we can get out of here";
+            TalkingText.text = "Oh.. You Got it! Now I can make [Guilding Light] to show the secret door and we can get out of here!";
             quest1State = QuestState.TurnedIn;
             Debug.Log("Quest 1 Turned in");
             return;
@@ -145,7 +145,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         else if (quest2State == QuestState.Given && QuestManagerScene2.instance.QuestIsCompleted == false)
         {
             TalkingPanel.SetActive(true);
-            TalkingText.text = "Let's [Help RedBuzz and Defeat all BlueBolts]!";
+            TalkingText.text = "Let's [Help Redbolt and Defeat all Buzzvenoms]!";
             SingleTalkingLine = true;
         }
         else if (quest2State == QuestState.Given && QuestManagerScene2.instance.QuestIsCompleted == true)
@@ -155,6 +155,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
             TalkingText.text = "Phewww I thought we all going to die here.. Anyway! Let's countinue";
             quest2State = QuestState.TurnedIn;
             Debug.Log("Quest 2 Turned in");
+            return;
         }
     }
 
@@ -169,16 +170,17 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         else if (quest3State == QuestState.Given && QuestManagerScene3.instance.QuestIsCompleted == false)
         {
             TalkingPanel.SetActive(true);
-            TalkingText.text = "Let's [Help RedBuzz and Defeat all BlueBolts]!";
+            TalkingText.text = "[A Key] must be around here... Hmmm I don't know where";
             SingleTalkingLine = true;
         }
         else if (quest3State == QuestState.Given && QuestManagerScene3.instance.QuestIsCompleted == true)
         {
             QuestManagerScene2.instance.ClearedQuest();
             TalkingPanel.SetActive(true);
-            TalkingText.text = "Phewww I thought we all going to die here.. Anyway! Let's countinue";
+            TalkingText.text = "Finally! Now we can enter Unauna city";
             quest3State = QuestState.TurnedIn;
-            Debug.Log("Quest 2 Turned in");
+            Debug.Log("Quest 3 Turned in");
+            return;
         }
     }
 
