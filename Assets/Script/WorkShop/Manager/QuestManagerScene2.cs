@@ -1,15 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static MerchantGovernor;
 
 public class QuestManagerScene2 : MonoBehaviour
 {
     //Set up
     public static QuestManagerScene2 instance; //
-    public string LoadSceneName;
+    public string LoadScene3Name;
     public int currentQuest2Progress = 0;
+    public GameObject BarrierWall;
 
     //Quest Text 
     public GameObject QuestPanel;
@@ -18,6 +21,7 @@ public class QuestManagerScene2 : MonoBehaviour
 
     //Check if the quest is on going or not
     public bool IsActive = false;
+    public bool QuestIsCompleted = false;
 
     private void Awake()
     {
@@ -57,16 +61,36 @@ public class QuestManagerScene2 : MonoBehaviour
         {
 
             //QuestText.text = "Quest: Completed! (Talk to Merchant Governor to countinue)";
-            CompletedQuest();
+            //CompletedQuest();
+            //MerchantGovernor.quest1State == QuestState.Completed;
+            QuestText.text = "Quest Completed! Talk to [Merchant Governor] to continue";
+            IsActive = false;
+            QuestIsCompleted = true;
         }
     }
 
+    //public void CompletedQuest()
+    //{
+    //    //Load new scene
+    //    IsActive = false;
+    //    QuestPanel.gameObject.SetActive(false);
+    //    LoadSceneManager.instance.LoadNewScene(LoadSceneName);
+    //    Debug.Log("Quest 2 Completed");
+    //}
+
     public void CompletedQuest()
     {
-        //Load new scene
-        IsActive = false;
-        QuestPanel.gameObject.SetActive(false);
-        LoadSceneManager.instance.LoadNewScene(LoadSceneName);
+        //Quest now ended
+        QuestText.text = "Quest Completed! Talk to [Merchant Governor] to continue";
+        //QuestPanel.gameObject.SetActive(false);
         Debug.Log("Quest 2 Completed");
+        //MerchantGovernor.instance.GiveRewardScene1();
+    }
+
+    public void ClearedQuest()
+    {
+        QuestPanel.gameObject.SetActive(false);
+        BarrierWall.gameObject.SetActive(false);
+        //LoadSceneManager.instance.LoadNewScene(LoadScene3Name);
     }
 }
