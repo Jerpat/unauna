@@ -2484,12 +2484,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: 
-  maxHealth: 100
+  _maxHealth: 100
   Damage: 25
-  movementSpeed: 5
+  Defense: 10
+  walkSpeed: 0
+  runSpeed: 0
+  camera: {fileID: 0}
   RightHand: {fileID: 2453676338479414451}
   LeftHand: {fileID: 6031465343440982945}
+  currentWeapon: {fileID: 0}
   inventory: []
+  potionPrefab: {fileID: 0}
+  startingPotionCount: 3
+  potionCountText: {fileID: 0}
 --- !u!114 &1272070284696664651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2502,7 +2509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4f95f033d20e942af1bad578d37ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillsSet: []
   skillEffects:
   - {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
   - {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}
@@ -2684,7 +2690,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4052450133362360554
 Transform:
   m_ObjectHideFlags: 0

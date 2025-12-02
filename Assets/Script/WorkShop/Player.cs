@@ -28,7 +28,7 @@ public class Player : Character
     
     float mouseSensitivity = 2f;
     float minLookX = -2f;
-    float maxLookX = 13f;
+    float maxLookX = 16f;
     private float currentLookX = 0f;
     private Rigidbody mRig;
 
