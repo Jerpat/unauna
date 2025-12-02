@@ -12,11 +12,9 @@ public class Deathlord : Enemy, IInteractable, IDestroyable
     public bool canTalk = true;
 
     public bool isInteractable { get => canTalk; set => canTalk = value; }
-    //public InteractableBase interactableBase;
 
     public void Interact(Player _player)
     {
-        //interactableBase?.ShowWordUI();
         WordTextUI.gameObject.SetActive(true);
         Invoke("CloseWord", 3);
     }
@@ -31,7 +29,6 @@ public class Deathlord : Enemy, IInteractable, IDestroyable
         timer -= Time.deltaTime;
         if(player != null)
         {
-            //interactableBase.UpdateUI(player);
             if (GetDistancePlayer() <= seeRange)
             {
                 Turn(player.transform.position - transform.position);

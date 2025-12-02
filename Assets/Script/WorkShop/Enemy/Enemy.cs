@@ -18,7 +18,6 @@ public abstract class Enemy : Character
 
     protected State currentState = State.idle;
 
-    public GameObject FloatingTextPrefab;
 
     protected void Awake()
     {
@@ -28,8 +27,16 @@ public abstract class Enemy : Character
             agent = gameObject.AddComponent<NavMeshAgent>();
             agent.stoppingDistance = 2.0f;
         }
-        /*agent = GetComponent<NavMeshAgent>();
-        agent.stoppingDistance = 2.0f;*/
+
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
+
+        if (animator == null)
+        {
+            Debug.LogWarning("Animator not found on " + gameObject.name);
+        }
     }
 
     public override void SetUP()
@@ -39,12 +46,6 @@ public abstract class Enemy : Character
     }
     protected virtual void Update()
     { 
-        /*if (player == null)
-        {
-            animator.SetBool("Attack", false);
-            return;
-        }*/
-
         timer -= Time.deltaTime;
 
         if(player == null)
@@ -59,7 +60,6 @@ public abstract class Enemy : Character
         }
         else if (GetDistancePlayer() <= seeRange && GetDistancePlayer() > atkRange)
         {
-            //agent.SetDestination(player.transform.position);
             Turn(player.transform.position - transform.position);
             Chase(player);
         }
@@ -68,21 +68,15 @@ public abstract class Enemy : Character
             agent.ResetPath();
             Attack(player);
         }
-        /*else
-        {
-            Chase(player);
-        }*/
-        /*else
-        {
-            animator.SetBool("Attack", false);
-            agent.ResetPath();
-        }*/
     }
 
     protected void idleState()
     {
-        agent.ResetPath();
-        animator.SetBool("Attack", false);
+        agent?.ResetPath();
+        if (animator != null)
+        {
+            animator.SetBool("Attack", false);
+        }
     }
 
     protected override void Turn(Vector3 direction)
@@ -93,11 +87,6 @@ public abstract class Enemy : Character
 
     protected void Chase(Player _player)
     {
-        //Vector3 destination = _player.transform.position;
-        /*if (GetDistancePlayer() < seeRange && GetDistancePlayer() > atkRange)
-        {
-            agent.SetDestination(_player.transform.position);
-        }*/
         if (_player == null) return;
         agent.SetDestination(_player.transform.position);
         animator.SetBool("Attack", false);
@@ -105,14 +94,6 @@ public abstract class Enemy : Character
 
     protected virtual void Attack(Player _player)
     {
-        /*if (timer < 0)
-        {
-            _player.TakeDamage(Damage);
-            animator.SetBool("Attack", true);
-            Debug.Log($"{Name} attacks {_player.Name} for {Damage} damage.");
-            timer = TimeToAttack;
-        }*/
-
         if(timer > 0 || player == null) return;
 
         agent.ResetPath();
@@ -133,25 +114,13 @@ public abstract class Enemy : Character
             {
                 QuestManagerScene2.instance.OnGoingQuest(1);
             }
-            //SoundManager.instance.PlaySFX(SoundDefeat);
             Destroy(gameObject);
+            SoundManager.instance.PlaySFX(SoundManager.instance.dieEnemySFX);
         }
         else
         {
             SoundManager.instance.PlaySFX(SoundManager.instance.hitEnemySFX);
-            ShowFloatingText();
         }
-    }
-
-    void ShowFloatingText()
-    {
-        Debug.Log("SPAWN FLOATING TEXT");
-
-        Vector3 pos = transform.position + new Vector3(0, 2f, 0);
-        var obj = Instantiate(FloatingTextPrefab, pos, Quaternion.identity);
-
-        if (obj == null)
-            Debug.Log("INSTANTIATE FAILED");
     }
 
     private void OnDrawGizmos()

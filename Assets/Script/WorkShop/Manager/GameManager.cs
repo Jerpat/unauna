@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 // กำหนดให้เป็น sealed เพื่อป้องกันการสืบทอด
 public class GameManager : MonoBehaviour
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else if(instance != this)
         {
@@ -65,9 +68,20 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             TogglePause();
         }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        HPText = GameObject.Find("HPText")?.GetComponent<TMP_Text>();
+        HPBar = GameObject.Find("HPBar")?.GetComponent<Slider>();
+        scoreText = GameObject.Find("ScoreText")?.GetComponent<TMP_Text>();
+        pauseMenuUI = GameObject.Find("PauseMenuUI");
+
+        Debug.Log("UI linked on scene: " + scene.name);
+        Debug.Log("HPText = " + HPText);
     }
 }

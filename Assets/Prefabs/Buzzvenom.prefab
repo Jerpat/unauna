@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1467277096911013437, guid: 586a8fad78c64d758ef4b7e17ea63960, type: 3}
       propertyPath: m_Name
-      value: Buzzvenom Variant
+      value: Buzzvenom
       objectReference: {fileID: 0}
     - target: {fileID: 1467277096911013437, guid: 586a8fad78c64d758ef4b7e17ea63960, type: 3}
       propertyPath: m_IsActive
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed8319321429ba47830fcd68cc3920e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Buzzvenom 02
+  _name: Buzzvenom
   _maxHealth: 100
   Damage: 1
   Defense: 10

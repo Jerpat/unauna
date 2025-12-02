@@ -109,15 +109,6 @@ public class Redbolt : Enemy, IInteractable, ITalkable
         }
     }
 
-    /*public void Chase(Player _player)
-    {
-        //Vector3 destination = _player.transform.position;
-        if (GetDistancePlayer() < seeRange && GetDistancePlayer() > atkRange)
-        {
-            agent.SetDestination(_player.transform.position);
-        }
-    }*/
-
     protected Character FindClosestTarget<T>() where T : Character
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, seeRange);
@@ -146,33 +137,6 @@ public class Redbolt : Enemy, IInteractable, ITalkable
     protected override void Attack(Player _player)
     {
         if (timer > 0) return;
-
-        /*Collider[] hits = Physics.OverlapSphere(transform.position, seeRange);
-        List<Character> ListTarget = new List<Character>();
-        foreach (Collider hit in hits)
-        {
-            if (hit.gameObject != this.gameObject)
-            {
-                Buzzvenom c = hit.GetComponent<Buzzvenom>();
-                if (c != null)
-                {
-                    ListTarget.Add(c);
-                }
-            }
-        }
-        Character _target = null;
-        float targetDistance = Mathf.Infinity;
-
-        foreach (Character c in ListTarget)
-        {
-            float distacne = Vector3.Distance(transform.position, c.transform.position);
-            //float Targetdistacne = Vector3.Distance(transform.position, _target.transform.position);
-            if (distacne < targetDistance)
-            {
-                targetDistance = distacne;
-                _target = c;
-            }
-        }*/
 
         Character _target = FindClosestTarget<Buzzvenom>();
 

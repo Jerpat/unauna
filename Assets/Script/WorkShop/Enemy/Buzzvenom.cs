@@ -6,7 +6,6 @@ public class Buzzvenom : EnemyPatrol, IDestroyable
 {
     protected override void Update()
     {
-        //base.Update();
         timer -= Time.deltaTime;
 
         Character closestT = FindClosestTarget<Player, Redbolt>();
@@ -47,50 +46,8 @@ public class Buzzvenom : EnemyPatrol, IDestroyable
                 Attack(null);
             }
         }
-
-
-        /*if (player != null && GetDistancePlayer() <= seeRange)
-        {
-            Chase(player);
-        }
-        else
-        {
-            GameObject _ally = GameObject.FindGameObjectWithTag("Ally");
-            if (_ally != null)
-            {
-                Player _allyP = _ally.GetComponent<Player>();
-                if (_allyP != null && Vector3.Distance(transform.position, _ally.transform.position) <= seeRange)
-                {
-                    Chase(_allyP);
-                }
-                else if (agent != null)
-                {
-                    agent.ResetPath();
-                }
-            }
-            else if (agent != null)
-            {
-                agent.ResetPath();
-            }
-        }*/
-        /*if (player != null && GetDistancePlayer() <= seeRange)
-        {
-            if (GetDistancePlayer() > atkRange)
-            {
-                agent.SetDestination(player.transform.position);
-                animator.SetBool("Attack", false);
-            }
-            else
-            {
-                agent.ResetPath();
-                Attack(player);
-            }
-        }
-        else
-        {
-            idleState();
-        }*/
     }
+
     protected Character FindClosestTarget<T1, T2>()
         where T1 : Character
         where T2 : Character
@@ -128,40 +85,6 @@ public class Buzzvenom : EnemyPatrol, IDestroyable
     protected override void Attack(Player _player)
     {
         if (timer > 0) return;
-
-        /*Collider[] hits = Physics.OverlapSphere(transform.position, seeRange);
-        List<Character> ListTarget = new List<Character>();
-        foreach (Collider hit in hits)
-        {
-            if (hit.gameObject != this.gameObject)
-            {
-                Redbolt c = hit.GetComponent<Redbolt>();
-                if (c != null)
-                {
-                    ListTarget.Add(c);
-                }
-                Player player = hit.GetComponent<Player>();
-                if (player != null)
-                {
-                    ListTarget.Add(player);
-                }
-            }
-        }
-
-        Character _target = null;
-        float targetDistance = Mathf.Infinity;
-
-        foreach (Character c in ListTarget)
-        {
-            float distacne = Vector3.Distance(transform.position, c.transform.position);
-            //float Targetdistacne = Vector3.Distance(transform.position, _target.transform.position);
-            if (distacne < targetDistance)
-            {
-                targetDistance = distacne;
-                _target = c;
-                agent.SetDestination(_target.transform.position);
-            }
-        }*/
 
         Character _target = FindClosestTarget<Player, Redbolt>();
 

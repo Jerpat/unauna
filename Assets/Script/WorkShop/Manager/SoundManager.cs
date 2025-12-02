@@ -26,8 +26,8 @@ public class SoundManager : MonoBehaviour
 
     [Header("SFX")]
     public AudioClip hitEnemySFX;
+    public AudioClip dieEnemySFX;
     public AudioClip healSFX;
-
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class SoundManager : MonoBehaviour
             sfxSource = gameObject.AddComponent<AudioSource>();
 
             musicSource.loop = true;
-            musicSource.volume = 0.3f;
+            musicSource.volume = 0.2f;
             PlayMusic(defaultBackgroundMusic);
 
             DontDestroyOnLoad(gameObject);

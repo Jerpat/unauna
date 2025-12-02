@@ -14,13 +14,8 @@ public class Player : Character
 
     [Header("Hand setting")]
     public Transform RightHand;
-    public Transform LeftHand;
     public Sword currentWeapon;
     public List<Item> inventory = new List<Item>();
-
-    [Header("Starting Items")]
-    public Potion potionPrefab;
-    public int startingPotionCount = 3;
 
    [Header("UI")]
     public TMP_Text potionCountText;
@@ -37,11 +32,9 @@ public class Player : Character
 
     bool _isRunning = false;
     bool _isAttacking = false;
-    bool _isBlocking = false;
     bool _isInteracting = false;
     bool _isHealing = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -59,7 +52,6 @@ public class Player : Character
         Move(_inputDirection);
         Turn(_inputDirection);
         Attack(_isAttacking);
-        Block(_isBlocking);
         Interact(_isInteracting);
     }
     public void Update()
@@ -85,7 +77,6 @@ public class Player : Character
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-
         if (mouseX != 0 || mouseY != 0)
         {
             MouseLook(mouseX, mouseY);
@@ -98,38 +89,14 @@ public class Player : Character
         _inputDirection = new Vector3(h, 0, v);
         _isRunning = Input.GetKey(KeyCode.LeftShift);
         _isAttacking = Input.GetMouseButtonDown(0);
-        _isBlocking = Input.GetMouseButton(1);
         _isInteracting = Input.GetKeyDown(KeyCode.E);
         _isHealing = Input.GetKeyDown(KeyCode.Q);
-
-
-        //add input to Interact
-        /*if (Input.GetKeyDown(KeyCode.E))
-        {
-            IInteractable i = InFront as IInteractable;
-            if (i != null)
-            {
-                i.Interact(this);
-            }
-        }*/
     }
 
     public void Attack(bool isAttacking)
     {
         if (!isAttacking) return;
 
-        /*if (isAttacking)
-        {
-            animator.SetTrigger("Attack");
-            //edit to Idestoryable, so, not only enemy that player can destroy
-            //Enemy e = InFront as Enemy;
-            var e = InFront as IDestroyable;
-            if (e != null)
-            {
-                e.TakeDamage(Damage);
-                Debug.Log($"{gameObject.name} attacks for {Damage} damage.");
-            }
-            _isAttacking = false;*/
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             animator.Play("Attack", 0, 0f);
@@ -147,32 +114,8 @@ public class Player : Character
             
         }
         _isAttacking = false;
-
-        /*animator.SetTrigger("Attack");
-
-        Ray ray = new Ray(camera.position, camera.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 100f))
-        {
-            var e = hit.collider.GetComponent<IDestroyable>();
-            if (e != null)
-            {
-                e.TakeDamage(Damage);
-                Debug.Log($"{gameObject.name} attacks {e} for {Damage} damage.");
-            }
-        }*/
-    
     }
 
-    private void Block(bool isBlocking)
-    {
-        if (isBlocking)
-        {
-            animator.SetBool("Block",isBlocking);
-            Debug.Log($"{gameObject.name} blocks damage.");
-        }
-    }
 
     private void Interact(bool isInteracting)
     {
@@ -188,17 +131,15 @@ public class Player : Character
     }
 
     public override void TakeDamage(int amount)
-    {
-        if (_isBlocking)
+    {   
+        base.TakeDamage(amount);
+        /*GameManager.instance.UpdateHealthText(health);
+        GameManager.instance.UpdateHealthBar(health, maxHealth);*/
+        if (GameManager.instance != null)
         {
-            base.TakeDamage(amount - 10);
+            GameManager.instance.UpdateHealthText(health);
+            GameManager.instance.UpdateHealthBar(health, maxHealth);
         }
-        else
-        {
-            base.TakeDamage(amount);
-        }
-        GameManager.instance.UpdateHealthText(health);
-        GameManager.instance.UpdateHealthBar(health, maxHealth);
         if (health <= 0)
         {
             SceneManager.LoadScene(05);
@@ -238,18 +179,7 @@ public class Player : Character
 
     protected override void Turn(Vector3 direction)
     {
-        /*Vector3 inputDir = new Vector3(direction.x, 0f, direction.z);
-        if (inputDir.sqrMagnitude < 0.01f) return;
-
-        if (direction.z < 0f) return;
-
-        Vector3 moveDirection = (transform.forward * direction.z) + (transform.right * direction.x);
-        moveDirection.y = 0f;
-
-        if (moveDirection.sqrMagnitude < 0.001f) return;
-
-        Quaternion targetRot = Quaternion.LookRotation(moveDirection);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 10f * Time.deltaTime);*/
+        
     }
 
     protected override void Move(Vector3 direction)

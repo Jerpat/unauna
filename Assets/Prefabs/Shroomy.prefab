@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4245915190017150719, guid: cbc814ca6b730954b8a5e3641bde01c9, type: 3}
       propertyPath: m_Name
-      value: Shroomy Variant
+      value: Shroomy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -108,8 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Shroomy
-  _maxHealth: 100
-  Damage: 10
+  _maxHealth: 50
+  Damage: 4
   Defense: 10
   walkSpeed: 0
   seeRange: 7

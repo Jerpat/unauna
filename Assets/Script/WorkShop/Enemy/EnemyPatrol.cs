@@ -34,19 +34,20 @@ public abstract class EnemyPatrol : Character
             agent = gameObject.AddComponent<NavMeshAgent>();
             agent.stoppingDistance = 2.0f;
         }
+
         originPos = new GameObject($"{name}_Origin").transform;
         originPos.position = transform.position;
+
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>();
+
+        if (animator == null)
+            Debug.LogWarning("Animator not found on " + gameObject.name);
     }
 
     protected virtual void Update()
     {
         timer -= Time.deltaTime;
-
-        /*if (player == null)
-        {
-            patrolState();
-            return;
-        }*/
 
         if (GetDistancePlayer() > seeRange)
         {
@@ -77,8 +78,9 @@ public abstract class EnemyPatrol : Character
 
     protected virtual void idleState()
     {
-        agent.ResetPath();
-        animator.SetBool("Attack", false);
+        agent?.ResetPath();
+        if (animator != null)
+            animator.SetBool("Attack", false);
     }
 
     protected virtual void patrolState()
@@ -113,8 +115,9 @@ public abstract class EnemyPatrol : Character
     protected void Chase(Player _player)
     {
         if (_player == null) return;
-        agent.SetDestination(_player.transform.position);
-        animator.SetBool("Attack", false);
+        agent?.SetDestination(_player.transform.position);
+        if (animator != null)
+            animator.SetBool("Attack", false);
     }
 
     protected virtual void Attack(Player _player)
@@ -123,18 +126,25 @@ public abstract class EnemyPatrol : Character
 
         Turn(_player.transform.position - transform.position);
         _player.TakeDamage(Damage);
-        animator.SetBool("Attack", true);
+
+        if (animator != null)
+        {
+            animator.SetBool("Attack", true);
+        }
+        
+
         Debug.Log($"{Name} attacks {_player.Name} for {Damage} damage.");
         timer = TimeToAttack;
     }
+
 
     public override void TakeDamage(int amount)
     {
         health -= amount;
         if (health <= 0)
         {
-            //SoundManager.instance.PlaySFX(SoundDefeat);
             Destroy(gameObject);
+            SoundManager.instance.PlaySFX(SoundManager.instance.dieEnemySFX);
         }
         else
         {
