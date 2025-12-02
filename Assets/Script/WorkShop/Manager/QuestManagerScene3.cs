@@ -5,9 +5,10 @@ using UnityEngine.UI;
 public class QuestManagerScene3 : MonoBehaviour
 {
     //Set up
-    public static QuestManagerScene3 instance; //
+    public static QuestManagerScene3 instance; 
     public string LoadSceneName;
     public int currentQuest3Progress = 0;
+    public GameObject BarrierWall3;
 
     //Quest Text 
     public GameObject QuestPanel;
@@ -16,6 +17,7 @@ public class QuestManagerScene3 : MonoBehaviour
 
     //Check if the quest is on going or not
     public bool IsActive = false;
+    public bool QuestIsCompleted = false;
 
     private void Awake()
     {
@@ -55,17 +57,25 @@ public class QuestManagerScene3 : MonoBehaviour
         {
 
             //QuestText.text = "Quest: Completed! (Talk to Merchant Governor to countinue)";
-            CompletedQuest();
+            QuestText.text = "Quest Completed! Talk to [Merchant Governor] to continue";
+            IsActive = false;
+            QuestIsCompleted = true;
         }
     }
 
     public void CompletedQuest()
     {
-        //Load new scene
-        IsActive = false;
-        QuestPanel.gameObject.SetActive(false);
-        LoadSceneManager.instance.LoadNewScene(LoadSceneName);
+        //Quest now ended
+        //QuestText.text = "Quest Completed! Talk to [Merchant Governor] to continue";
+        //QuestPanel.gameObject.SetActive(false);
         Debug.Log("Quest 3 Completed");
+        //MerchantGovernor.instance.GiveRewardScene1();
     }
 
+    public void ClearedQuest()
+    {
+        QuestPanel.gameObject.SetActive(false);
+        BarrierWall3.gameObject.SetActive(false);
+        //LoadSceneManager.instance.LoadNewScene(LoadScene3Name);
+    }
 }

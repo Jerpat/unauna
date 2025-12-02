@@ -14,7 +14,7 @@ public class CollectableItem : Item
         gameObject.SetActive(false);
         if (gameObject.name == "Gemstone_Amethyst")
         {
-            QuestManagerScene2.instance.OnGoingQuest(1);
+            QuestManagerScene1.instance.OnGoingQuest(1);
         }
     }
 

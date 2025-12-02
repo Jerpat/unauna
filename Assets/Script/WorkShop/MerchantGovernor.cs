@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MerchantGovernor : Character, IInteractable, ITalkable
 {
-    //SetUp
-    //public static MerchantGovernor instance;
     //Quest State SetUp
     public enum QuestState { NotGiven, Given, Completed, TurnedIn }
     public QuestState quest1State = QuestState.NotGiven;
@@ -17,8 +15,8 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
     private string currentScene;
 
     //Interface SetUp
-    public bool canTalk = true;
-    public bool canInteract = true;
+    private bool canTalk = true;
+    private bool canInteract = true;
     //private bool Quest1 = false;
 
     //Interact Text
@@ -32,29 +30,12 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
     public string[] TalkingLines;
     private int index = 0;
 
-    //private void Awake()
-    //{
-    //    if (instance == null)
-    //    {
-    //        instance = this;
-    //        DontDestroyOnLoad(gameObject);
-    //    }
-    //    else if (instance != this)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
-
     public bool isInteractable { get => canInteract; set => canInteract = value; }
     public bool isTalkable { get => canTalk; set => canTalk = value; }
 
 
     public override void SetUP()
     {
-        //DontDestroyOnLoad(gameObject);
-        //TalkingPanel = GetComponentInChildren<GameObject>();
-        //TalkingText = GetComponentInChildren<TMP_Text>();
-
         //Interact Text Setting
         interactionTextUI = GetComponentInChildren<TMP_Text>();
 
@@ -111,8 +92,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
             GiveQuestScene1();
             Debug.Log("Conversation Ended, Give Quest Scene 1");
         }
-        //else if (currentScene == "02Desert")
-        else if (currentScene == "02Desert Test UI Items")
+        else if (currentScene == "02Desert")
         {
             TalkingPanel.SetActive(false);
             GiveQuestScene2();
@@ -176,17 +156,30 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
             quest2State = QuestState.TurnedIn;
             Debug.Log("Quest 2 Turned in");
         }
-        //else if (quest2State == QuestState.TurnedIn)
-        //{
-        //    TalkingPanel.SetActive(false);
-        //    return;
-        //}
     }
 
     public void GiveQuestScene3()
     {
-        QuestManagerScene3.instance.StartQuest();
-        Debug.Log("Quest Scene 3 Given");
+        if (quest3State == QuestState.NotGiven)
+        {
+            QuestManagerScene3.instance.StartQuest();
+            quest3State = QuestState.Given;
+            Debug.Log("Quest 3 Given");
+        }
+        else if (quest3State == QuestState.Given && QuestManagerScene3.instance.QuestIsCompleted == false)
+        {
+            TalkingPanel.SetActive(true);
+            TalkingText.text = "Let's [Help RedBuzz and Defeat all BlueBolts]!";
+            SingleTalkingLine = true;
+        }
+        else if (quest3State == QuestState.Given && QuestManagerScene3.instance.QuestIsCompleted == true)
+        {
+            QuestManagerScene2.instance.ClearedQuest();
+            TalkingPanel.SetActive(true);
+            TalkingText.text = "Phewww I thought we all going to die here.. Anyway! Let's countinue";
+            quest3State = QuestState.TurnedIn;
+            Debug.Log("Quest 2 Turned in");
+        }
     }
 
 }

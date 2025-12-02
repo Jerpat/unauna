@@ -9,10 +9,10 @@ using static MerchantGovernor;
 public class QuestManagerScene2 : MonoBehaviour
 {
     //Set up
-    public static QuestManagerScene2 instance; //
+    public static QuestManagerScene2 instance; 
     public string LoadScene3Name;
     public int currentQuest2Progress = 0;
-    public GameObject BarrierWall;
+    public GameObject BarrierWall2;
 
     //Quest Text 
     public GameObject QuestPanel;
@@ -54,8 +54,8 @@ public class QuestManagerScene2 : MonoBehaviour
     public void OnGoingQuest(int progress)
     {
         //Quest Info
-        Quest2ProgressBar.value = currentQuest2Progress;
         currentQuest2Progress += progress;
+        Quest2ProgressBar.value = currentQuest2Progress;
         Debug.Log("Currently Quest: Find Glowing Crystal"); //
         if (IsActive == true && currentQuest2Progress > 0) //
         {
@@ -90,7 +90,7 @@ public class QuestManagerScene2 : MonoBehaviour
     public void ClearedQuest()
     {
         QuestPanel.gameObject.SetActive(false);
-        BarrierWall.gameObject.SetActive(false);
+        BarrierWall2.gameObject.SetActive(false);
         //LoadSceneManager.instance.LoadNewScene(LoadScene3Name);
     }
 }
