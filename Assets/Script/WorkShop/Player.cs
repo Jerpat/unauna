@@ -142,7 +142,7 @@ public class Player : Character
         {
             e.TakeDamage(Damage);
             Debug.Log($"{gameObject.name} attacks for {Damage} damage.");
-            SoundManager.instance.PlaySFX(SoundManager.instance.hitEnemySFX);
+            
         }
         _isAttacking = false;
 
@@ -204,6 +204,7 @@ public class Player : Character
         base.Heal(amount);
         GameManager.instance.UpdateHealthText(health);
         GameManager.instance.UpdateHealthBar(health, maxHealth);
+        SoundManager.instance.PlaySFX(SoundManager.instance.healSFX);
     }
     private void UsePotion()
     {

@@ -136,6 +136,10 @@ public abstract class EnemyPatrol : Character
             //SoundManager.instance.PlaySFX(SoundDefeat);
             Destroy(gameObject);
         }
+        else
+        {
+            SoundManager.instance.PlaySFX(SoundManager.instance.hitEnemySFX);
+        }
     }
 
     private void OnDrawGizmos()

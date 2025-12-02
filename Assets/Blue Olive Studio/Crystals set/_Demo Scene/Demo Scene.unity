@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 0.221
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.221}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Emerald effects
       objectReference: {fileID: 0}
+    - target: {fileID: 4528861443329886364, guid: 104e517b5350ab84294243ac27b769ce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
     - target: {fileID: 8016065636193730262, guid: 104e517b5350ab84294243ac27b769ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.472241
@@ -562,8 +566,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!4 &137357118
 Transform:
   m_ObjectHideFlags: 0
@@ -903,8 +911,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!4 &209346927
 Transform:
   m_ObjectHideFlags: 0
@@ -1309,6 +1321,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5060619630036451836, guid: 9c63358f1265ade43a8cf21b0c230fbf, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
     - target: {fileID: 6202515528102487311, guid: 9c63358f1265ade43a8cf21b0c230fbf, type: 3}
       propertyPath: m_Name
       value: Crystal effects
@@ -1579,6 +1595,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orange Citrine effects
       objectReference: {fileID: 0}
+    - target: {fileID: 2629027178884936535, guid: 518f202b5f3d5f64d8d932c0fd5a0771, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
     - target: {fileID: 8734462733695192455, guid: 518f202b5f3d5f64d8d932c0fd5a0771, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.561794
@@ -5987,6 +6007,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3477247907902490285, guid: 6745266a30daec7409310d1a350bb5f7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
     - target: {fileID: 7207945215338728525, guid: 6745266a30daec7409310d1a350bb5f7, type: 3}
       propertyPath: m_Name
       value: Saphire effects
@@ -7021,6 +7045,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

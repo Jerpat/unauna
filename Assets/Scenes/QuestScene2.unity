@@ -250,7 +250,7 @@ MonoBehaviour:
   _maxHealth: 100
   Damage: 1
   Defense: 10
-  movementSpeed: 1
+  walkSpeed: 0
   seeRange: 7
   atkRange: 5
 --- !u!135 &49340422
@@ -817,12 +817,9 @@ MonoBehaviour:
   _maxHealth: 100
   Damage: 10
   Defense: 10
-  movementSpeed: 0
+  walkSpeed: 0
   seeRange: 7
   atkRange: 5
-  canTalk: 1
-  interactionTextUI: {fileID: 2031986107}
-  WordTextUI: {fileID: 627774351}
 --- !u!135 &120135742
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -915,7 +912,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -1051,7 +1049,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -1246,7 +1245,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -1629,7 +1629,7 @@ MonoBehaviour:
   _maxHealth: 100
   Damage: 1
   Defense: 10
-  movementSpeed: 0
+  walkSpeed: 0
   seeRange: 7
   atkRange: 5
   attackRange: 5
@@ -2487,7 +2487,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -2888,7 +2889,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -3134,7 +3136,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -3625,7 +3628,7 @@ MonoBehaviour:
   _maxHealth: 100
   Damage: 10
   Defense: 10
-  movementSpeed: 0
+  walkSpeed: 0
   seeRange: 10
   atkRange: 3
   canTalk: 1
@@ -3936,7 +3939,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -4112,7 +4116,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -4441,7 +4446,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -4735,6 +4741,13 @@ MonoBehaviour:
   sfxSource: {fileID: 0}
   defaultButtonClick: {fileID: 8300000, guid: 40edb9618b1b7f948a2c4c39a9072df2, type: 3}
   defaultBackgroundMusic: {fileID: 8300000, guid: 033766cc31c97904bae4404b8a079544, type: 3}
+  grassStep: {fileID: 0}
+  sandStep: {fileID: 0}
+  stoneStep: {fileID: 0}
+  waterStep: {fileID: 0}
+  walkInterval: 0.4
+  runInterval: 0.25
+  hitEnemySFX: {fileID: 0}
 --- !u!114 &911534242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4919,7 +4932,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -5203,7 +5217,7 @@ MonoBehaviour:
   _maxHealth: 100
   Damage: 10
   Defense: 10
-  movementSpeed: 0
+  walkSpeed: 0
   seeRange: 7
   atkRange: 5
   canTalk: 1
@@ -5595,6 +5609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: 
   healAmount: 20
+  collectPotionSFX: {fileID: 0}
 --- !u!135 &1122459395
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6119,7 +6134,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -6576,7 +6592,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -6754,7 +6771,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -7809,7 +7827,7 @@ MonoBehaviour:
   _maxHealth: 100
   Damage: 10
   Defense: 10
-  movementSpeed: 0
+  walkSpeed: 0
   seeRange: 10
   atkRange: 5
   isReturnToOrigin: 0
@@ -8666,12 +8684,13 @@ MonoBehaviour:
   _maxHealth: 100
   Damage: 10
   Defense: 10
-  movementSpeed: 0
+  walkSpeed: 0
   canTalk: 1
   canInteract: 1
   interactionTextUI: {fileID: 153460084}
   TalkingPanel: {fileID: 1186915849}
   TalkingText: {fileID: 134725302}
+  TalkingNameText: {fileID: 0}
   TalkingLines:
   - Nice!
   - Now we need "Test item 1" It will help us travel faster!

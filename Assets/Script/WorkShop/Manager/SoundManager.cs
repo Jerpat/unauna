@@ -26,6 +26,7 @@ public class SoundManager : MonoBehaviour
 
     [Header("SFX")]
     public AudioClip hitEnemySFX;
+    public AudioClip healSFX;
 
 
     private void Awake()
@@ -91,6 +92,7 @@ public class SoundManager : MonoBehaviour
         }
 
         sfxSource.PlayOneShot(clip);
+        sfxSource.volume = 0.15f;
 
         if (isRunning)
         {

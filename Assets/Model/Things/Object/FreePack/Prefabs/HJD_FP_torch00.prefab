@@ -419,16 +419,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Torch
   interactionTextUI: {fileID: 4391934564696429850}
-  isInteractable: 1
-  Firelight: {fileID: 8607779901407039434}
+  CanUse: 1
   isOn: 0
+  FireLight: {fileID: 0}
 --- !u!4 &6383920536124737602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e4416db0fa79cdf48b3b1499ef05ac62, type: 3}
-  m_PrefabInstance: {fileID: 6850683780289802153}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8607779901407039434 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -6312218546610298781, guid: e4416db0fa79cdf48b3b1499ef05ac62, type: 3}
   m_PrefabInstance: {fileID: 6850683780289802153}
   m_PrefabAsset: {fileID: 0}
