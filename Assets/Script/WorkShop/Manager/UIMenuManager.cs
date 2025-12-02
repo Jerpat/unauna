@@ -6,22 +6,22 @@ public class UIMenuManager : MonoBehaviour
     //Start Game
     public void OnStartGameClicked()
     {
-        //SceneManager.LoadScene(1);
-        SceneManager.LoadScene(7);
+        SceneManager.LoadScene(01);
         Debug.Log("Starting the game");
     }
 
     //Exit Back to Home
     public void BackToHomeClicked()
     {
-        //SceneManager.LoadScene(0);
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(00);
         Debug.Log("Back to Home Scene");
     }
 
     public void BackFromPause()
     {
         GameManager.instance.TogglePause();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     //Quit Game
