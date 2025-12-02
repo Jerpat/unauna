@@ -131,6 +131,10 @@ public abstract class Enemy : Character
             //SoundManager.instance.PlaySFX(SoundDefeat);
             Destroy(gameObject);
         }
+        else
+        {
+            SoundManager.instance.PlaySFX(SoundManager.instance.hitEnemySFX);
+        }
     }
 
     private void OnDrawGizmos()
