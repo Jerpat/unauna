@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c444648fa008d42ba6b1ddcec29b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Aquamarine
+  _name: Glowing_Crystal
   value: 0
 --- !u!1 &5166965077917592653
 GameObject:

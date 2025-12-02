@@ -48,7 +48,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
     }
     public void Update()
     {
-        if (GetDistancePlayer() >= 2f || !canInteract)
+        if (GetDistancePlayer() >= 3f || !canInteract)
         {
             interactionTextUI.gameObject.SetActive(false);
         }
@@ -120,14 +120,14 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         else if (quest1State == QuestState.Given && QuestManagerScene1.instance.IsActive == true)
         {
             TalkingPanel.SetActive(true);
-            TalkingText.text = "Quick! [Find a Glowing Stone] and give it to me!";
+            TalkingText.text = "Quick! [Go Get a Glowing Crystal] and handle it to me!";
             SingleTalkingLine = true;
         }
-        else if (quest1State == QuestState.Completed && QuestManagerScene1.instance.IsActive == false)
+        else if (quest1State == QuestState.Given && QuestManagerScene1.instance.QuestIsCompleted == true)
         {
             QuestManagerScene1.instance.ClearedQuest();
             TalkingPanel.SetActive(true);
-            TalkingText.text = "Oh.. You Found it! Now I can make a lantern and we can get out of here";
+            TalkingText.text = "Oh.. You Got it! Now I can make [Guilding Light] to show the secret door and we can get out of here!";
             quest1State = QuestState.TurnedIn;
             Debug.Log("Quest 1 Turned in");
             return;
