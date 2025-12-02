@@ -55,9 +55,12 @@ public class GameManager : MonoBehaviour
 
     public void TogglePause()
     {
+        Debug.Log("Game is Paused");
         isGamePaused = !isGamePaused;
         Time.timeScale = isGamePaused ? 0:1; //everything pause if time = 0
         pauseMenuUI.SetActive(isGamePaused);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void Update()

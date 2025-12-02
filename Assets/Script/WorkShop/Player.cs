@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +22,7 @@ public class Player : Character
     public int startingPotionCount = 3;
 
    [Header("UI")]
-    public Text potionCountText;
+    public TMP_Text potionCountText;
 
     Vector3 _inputDirection;
     
@@ -221,8 +222,11 @@ public class Player : Character
     public void UpdatePotionUI()
     {
         int potionCount = inventory.FindAll(item => item is Potion).Count;
+        Debug.Log($"Collect Potions, Potions: {potionCount}");
         if (potionCountText != null)
-            potionCountText.text = $"Potions: {potionCount}";
+        {
+            potionCountText.text = $"{potionCount}";
+        }
     }
 
     protected override void Turn(Vector3 direction)
