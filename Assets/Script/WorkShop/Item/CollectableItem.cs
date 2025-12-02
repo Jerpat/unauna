@@ -16,6 +16,10 @@ public class CollectableItem : Item
         {
             QuestManagerScene1.instance.OnGoingQuest(1);
         }
+        if (gameObject.name == "A_Key")
+        {
+            QuestManagerScene3.instance.OnGoingQuest(1);
+        }
     }
 
 }
