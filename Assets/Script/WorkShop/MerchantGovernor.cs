@@ -7,15 +7,25 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
 {
     //SetUp
     //public static MerchantGovernor instance;
+    //Quest State SetUp
+    public enum QuestState { NotGiven, Given, Completed, TurnedIn }
+    public QuestState quest1State = QuestState.NotGiven;
+    public QuestState quest2State = QuestState.NotGiven;
+    public QuestState quest3State = QuestState.NotGiven;
+
+    //Scene SetUp
     private string currentScene;
+
+    //Interface SetUp
     public bool canTalk = true;
     public bool canInteract = true;
-    private bool Quest1 = false;
+    //private bool Quest1 = false;
 
     //Interact Text
     public TMP_Text interactionTextUI;
 
     //Talking Conversations Text 
+    private bool SingleTalkingLine = false;
     public GameObject TalkingPanel;
     public TMP_Text TalkingText;
     public TMP_Text TalkingNameText;
@@ -45,11 +55,13 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         //TalkingPanel = GetComponentInChildren<GameObject>();
         //TalkingText = GetComponentInChildren<TMP_Text>();
 
+        //Interact Text Setting
         interactionTextUI = GetComponentInChildren<TMP_Text>();
 
         //UI Setting
         TalkingPanel.gameObject.SetActive(false);
 
+        //Scene Setting
         currentScene = SceneManager.GetActiveScene().name;
         Debug.Log("Current Scene = " + currentScene);
     }
@@ -68,54 +80,107 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
 
     public void Interact(Player player)
     {
+        if (SingleTalkingLine)
+        {
+            TalkingPanel.SetActive(false);
+            SingleTalkingLine = false;
+            return;
+        }
         Talk(player);
         Debug.Log("Interact With Merchant Governor");
     }
+
     public void Talk(Player player)
     {
         //UI Setting
         TalkingPanel.gameObject.SetActive(true);
         TalkingNameText.text = "Merchant Governor";
 
+        //Talking All Lines before Give Quest
         if (index < TalkingLines.Length)
         {
             TalkingText.text = TalkingLines[index];
             index++;
-
+            return;
         }
-        else if (currentScene == "01Dungeon")
+
+        //Give Quest for each Scence (Use Current Scene to check)
+        if (currentScene == "01Dungeon")
         {
-            TalkingPanel.gameObject.SetActive(false);
+            TalkingPanel.SetActive(false);
             GiveQuestScene1();
             Debug.Log("Conversation Ended, Give Quest Scene 1");
         }
         //else if (currentScene == "02Desert")
         else if (currentScene == "02Desert Test UI Items")
         {
-            TalkingPanel.gameObject.SetActive(false);
+            TalkingPanel.SetActive(false);
             GiveQuestScene2();
             Debug.Log("Conversation Ended, Give Quest Scene 2");
         }
         else if (currentScene == "03Forest")
         {
-            TalkingPanel.gameObject.SetActive(false);
+            TalkingPanel.SetActive(false);
             GiveQuestScene3();
             Debug.Log("Conversation Ended, Give Quest Scene 3");
         }
-
+        
+        //Close Talking UI PAnel after Talked all Lines and Gave a Quest
+        //TalkingPanel.SetActive(false);
     }
 
     public void GiveQuestScene1()
     {
-        QuestManagerScene1.instance.StartQuest();
-        Quest1 = true;
-        Debug.Log("Quest Scene 1 Given");
+        if (quest1State == QuestState.NotGiven)
+        {
+            QuestManagerScene1.instance.StartQuest();
+            quest1State = QuestState.Given;
+            Debug.Log("Quest 1 Given");
+        }
+        else if (quest1State == QuestState.Given && QuestManagerScene1.instance.IsActive == true)
+        {
+            TalkingPanel.SetActive(true);
+            TalkingText.text = "Quick! [Find a Glowing Stone] and give it to me!";
+            SingleTalkingLine = true;
+        }
+        else if (quest1State == QuestState.Completed && QuestManagerScene1.instance.IsActive == false)
+        {
+            QuestManagerScene1.instance.ClearedQuest();
+            TalkingPanel.SetActive(true);
+            TalkingText.text = "Oh.. You Found it! Now I can make a lantern and we can get out of here";
+            quest1State = QuestState.TurnedIn;
+            Debug.Log("Quest 1 Turned in");
+            return;
+        }
     }
 
     public void GiveQuestScene2()
     {
-        QuestManagerScene2.instance.StartQuest();
-        Debug.Log("Quest Scene 2 Given");
+        if (quest2State == QuestState.NotGiven)
+        {
+            QuestManagerScene2.instance.StartQuest();
+            quest2State = QuestState.Given;
+            Debug.Log("Quest 2 Given");
+        }
+        else if (quest2State == QuestState.Given && QuestManagerScene2.instance.QuestIsCompleted == false)
+        {
+            TalkingPanel.SetActive(true);
+            TalkingText.text = "Let's [Help RedBuzz and Defeat all BlueBolts]!";
+            SingleTalkingLine = true;
+        }
+        else if (quest2State == QuestState.Given && QuestManagerScene2.instance.QuestIsCompleted == true)
+        {
+            QuestManagerScene2.instance.ClearedQuest();
+            TalkingPanel.SetActive(true);
+            TalkingText.text = "Phewww I thought we all going to die here.. Anyway! Let's countinue";
+            quest2State = QuestState.TurnedIn;
+            Debug.Log("Quest 2 Turned in");
+        }
+        //else if (quest2State == QuestState.TurnedIn)
+        //{
+        //    TalkingPanel.SetActive(false);
+        //    return;
+        //}
     }
 
     public void GiveQuestScene3()
@@ -124,12 +189,4 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         Debug.Log("Quest Scene 3 Given");
     }
 
-    //public void GiveRewardScene1()
-    //{
-    //    if Talk
-    //    Debug.Log("Reward Scene 1 Given");
-    //    TalkingText.text = TalkingLines[];
-    //    QuestManagerScene1.instance.ClearedQuest();
-    //    LoadSceneManager.instance.LoadNewScene(LoadScene1Name);
-    //}
 }

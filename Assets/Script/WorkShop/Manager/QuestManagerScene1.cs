@@ -8,7 +8,7 @@ public class QuestManagerScene1 : MonoBehaviour
 {
     //Set up
     public static QuestManagerScene1 instance;
-    public string LoadScene1Name;
+    public string LoadScene2Name;
     public int currentQuestProgress = 0;
 
     //Quest Text 
@@ -75,13 +75,16 @@ public class QuestManagerScene1 : MonoBehaviour
     {
         //Load new scene
         IsActive = false;
-        QuestPanel.gameObject.SetActive(false);
-        LoadSceneManager.instance.LoadNewScene(LoadScene1Name);
+        //QuestText.text = "Quest Completed! Talk to [Merchant Governor] to continue";
         Debug.Log("Quest 1 Completed");
         //MerchantGovernor.instance.GiveRewardScene1();
     }
 
-
+    public void ClearedQuest()
+    {
+        QuestPanel.gameObject.SetActive(false);
+        LoadSceneManager.instance.LoadNewScene(LoadScene2Name);
+    }
 
     //private List<IQuest> _activeObjectives = new List<IQuest>();
 

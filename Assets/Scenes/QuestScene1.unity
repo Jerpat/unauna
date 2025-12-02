@@ -250,7 +250,7 @@ MonoBehaviour:
   _maxHealth: 100
   Damage: 1
   Defense: 10
-  movementSpeed: 1
+  walkSpeed: 0
   seeRange: 7
   atkRange: 5
 --- !u!135 &49340422
@@ -791,12 +791,9 @@ MonoBehaviour:
   _maxHealth: 100
   Damage: 10
   Defense: 10
-  movementSpeed: 0
+  walkSpeed: 0
   seeRange: 7
   atkRange: 5
-  canTalk: 1
-  interactionTextUI: {fileID: 2031986107}
-  WordTextUI: {fileID: 627774351}
 --- !u!135 &120135742
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1004,12 +1001,16 @@ MonoBehaviour:
   _maxHealth: 100
   Damage: 10
   Defense: 10
-  movementSpeed: 0
+  walkSpeed: 0
+  quest1State: 0
+  quest2State: 0
+  quest3State: 0
   canTalk: 1
   canInteract: 1
   interactionTextUI: {fileID: 1024679646}
   TalkingPanel: {fileID: 1186915849}
   TalkingText: {fileID: 134725302}
+  TalkingNameText: {fileID: 0}
   TalkingLines:
   - ...help!
   - I really want to get out of here...
@@ -1163,7 +1164,7 @@ MonoBehaviour:
   _maxHealth: 100
   Damage: 1
   Defense: 10
-  movementSpeed: 0
+  walkSpeed: 0
   seeRange: 7
   atkRange: 5
   attackRange: 5
@@ -2891,7 +2892,7 @@ MonoBehaviour:
   _maxHealth: 100
   Damage: 10
   Defense: 10
-  movementSpeed: 0
+  walkSpeed: 0
   seeRange: 10
   atkRange: 3
   canTalk: 1
@@ -3780,6 +3781,7 @@ GameObject:
   - component: {fileID: 911534241}
   - component: {fileID: 911534244}
   - component: {fileID: 911534245}
+  - component: {fileID: 911534246}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3890,6 +3892,13 @@ MonoBehaviour:
   sfxSource: {fileID: 0}
   defaultButtonClick: {fileID: 8300000, guid: 40edb9618b1b7f948a2c4c39a9072df2, type: 3}
   defaultBackgroundMusic: {fileID: 8300000, guid: 033766cc31c97904bae4404b8a079544, type: 3}
+  grassStep: {fileID: 0}
+  sandStep: {fileID: 0}
+  stoneStep: {fileID: 0}
+  waterStep: {fileID: 0}
+  walkInterval: 0.4
+  runInterval: 0.25
+  hitEnemySFX: {fileID: 0}
 --- !u!114 &911534242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3933,7 +3942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4629f5f54521329499b79b511ead9dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadScene1Name: QuestScene2
+  LoadScene2Name: 
   currentQuestProgress: 0
   QuestPanel: {fileID: 1159527873}
   QuestText: {fileID: 1428545143}
@@ -3951,11 +3960,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a313949c47d4324c9640d0b8fbaa0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadSceneName: QuestScene3
+  LoadScene3Name: 
   currentQuest2Progress: 0
   QuestPanel: {fileID: 1159527873}
   QuestText: {fileID: 1428545143}
   Quest2ProgressBar: {fileID: 485751387}
+  IsActive: 0
+--- !u!114 &911534246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911534236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a0b054745b83b4198bcf823f11e374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadSceneName: 
+  currentQuest3Progress: 0
+  QuestPanel: {fileID: 0}
+  QuestText: {fileID: 0}
+  Quest3ProgressBar: {fileID: 0}
   IsActive: 0
 --- !u!1 &920643594
 GameObject:
@@ -4358,7 +4385,7 @@ MonoBehaviour:
   _maxHealth: 100
   Damage: 10
   Defense: 10
-  movementSpeed: 0
+  walkSpeed: 0
   seeRange: 7
   atkRange: 5
   canTalk: 1
@@ -4926,6 +4953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: 
   healAmount: 20
+  collectPotionSFX: {fileID: 0}
 --- !u!135 &1122459395
 SphereCollider:
   m_ObjectHideFlags: 0
