@@ -18,6 +18,8 @@ public abstract class Enemy : Character
 
     protected State currentState = State.idle;
 
+    public GameObject FloatingTextPrefab;
+
     protected void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -134,7 +136,19 @@ public abstract class Enemy : Character
         else
         {
             SoundManager.instance.PlaySFX(SoundManager.instance.hitEnemySFX);
+            ShowFloatingText();
         }
+    }
+
+    void ShowFloatingText()
+    {
+        Debug.Log("SPAWN FLOATING TEXT");
+
+        Vector3 pos = transform.position + new Vector3(0, 2f, 0);
+        var obj = Instantiate(FloatingTextPrefab, pos, Quaternion.identity);
+
+        if (obj == null)
+            Debug.Log("INSTANTIATE FAILED");
     }
 
     private void OnDrawGizmos()
