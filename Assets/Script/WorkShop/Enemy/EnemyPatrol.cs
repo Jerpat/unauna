@@ -80,7 +80,9 @@ public abstract class EnemyPatrol : Character
     {
         agent?.ResetPath();
         if (animator != null)
+        {
             animator.SetBool("Attack", false);
+        }
     }
 
     protected virtual void patrolState()
@@ -117,7 +119,9 @@ public abstract class EnemyPatrol : Character
         if (_player == null) return;
         agent?.SetDestination(_player.transform.position);
         if (animator != null)
+        {
             animator.SetBool("Attack", false);
+        }
     }
 
     protected virtual void Attack(Player _player)
