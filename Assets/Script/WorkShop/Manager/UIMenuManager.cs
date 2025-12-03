@@ -1,8 +1,35 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIMenuManager : MonoBehaviour
 {
+    public static UIMenuManager instance;
+
+    public GameObject talkingPanel;
+    public TMP_Text talkingText;
+    public TMP_Text talkingNameText;
+
+    public GameObject questPanel;
+    public TMP_Text questText;
+    public Slider quest2ProgressBar;
+    public Slider quest3ProgressBar;
+
+
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     //Start Game
     public void OnStartGameClicked()
     {

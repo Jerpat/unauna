@@ -8232,9 +8232,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentQuest2Progress: 0
   BarrierWall2: {fileID: 0}
-  QuestPanel: {fileID: 0}
-  QuestText: {fileID: 0}
-  Quest2ProgressBar: {fileID: 0}
+  QuestPanel: {fileID: 1383918592}
+  QuestText: {fileID: 1310447580}
+  Quest2ProgressBar: {fileID: 779322773}
   IsActive: 0
   QuestIsCompleted: 0
 --- !u!114 &347529223
@@ -8249,6 +8249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e8454d12302f140998e655b26f829d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  talkingPanel: {fileID: 1941154182}
+  talkingText: {fileID: 736136247}
+  talkingNameText: {fileID: 323756718}
 --- !u!4 &348780914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6716378952611014762, guid: 4ac0456bf1c2d984389e8e5b3db081ca, type: 3}

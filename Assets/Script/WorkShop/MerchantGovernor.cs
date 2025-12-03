@@ -40,6 +40,10 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         interactionTextUI = GetComponentInChildren<TMP_Text>();
 
         //UI Setting
+        TalkingPanel = UIMenuManager.instance.talkingPanel;
+        TalkingText = UIMenuManager.instance.talkingText;
+        TalkingNameText = UIMenuManager.instance.talkingNameText;
+
         TalkingPanel.gameObject.SetActive(false);
 
         //Scene Setting

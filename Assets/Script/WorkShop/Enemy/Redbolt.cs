@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
-public class Redbolt : Enemy, IInteractable, ITalkable
+public class Redbolt : Enemy, IInteractable
 {
     //Interface SetUp
     protected bool isChasing = false;
@@ -15,48 +15,19 @@ public class Redbolt : Enemy, IInteractable, ITalkable
     //Interact Text
     public TMP_Text interactionTextUI;
 
-    //Talking Conversations Text 
-    public GameObject TalkingPanel;
-    public TMP_Text TalkingText;
-    public TMP_Text TalkingNameText;
-    public string[] TalkingLines;
-    private int index = 0;
     public bool isInteractable { get => canTalk; set => canTalk = value; }
 
-    public bool isTalkable { get => canTalk; set => canTalk = value; }
 
     public override void SetUP()
     {
         //Interact Text Setting
         interactionTextUI = GetComponentInChildren<TMP_Text>();
-
-        //UI Setting
-        TalkingPanel.gameObject.SetActive(false);
     }
 
     public void Interact(Player _player)
     {
         isChasing = true;
         Debug.Log($"{Name} start chasing {_player.Name}");
-    }
-
-    public void Talk(Player player)
-    {
-        //UI Setting
-        TalkingPanel.gameObject.SetActive(true);
-        TalkingNameText.text = "Redbolt";
-
-        //Talking All Lines before Give Quest
-        if (index < TalkingLines.Length)
-        {
-            TalkingText.text = TalkingLines[index];
-            index++;
-            return;
-        }
-        else
-        {
-            SceneManager.LoadScene(04);
-        }
     }
 
     protected override void Update()
