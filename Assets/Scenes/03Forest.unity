@@ -12534,6 +12534,10 @@ MonoBehaviour:
   talkingPanel: {fileID: 981543730}
   talkingText: {fileID: 1559678273}
   talkingNameText: {fileID: 1133300202}
+  questPanel: {fileID: 354707062}
+  questText: {fileID: 1746979824}
+  quest2ProgressBar: {fileID: 569147405}
+  quest3ProgressBar: {fileID: 0}
 --- !u!114 &579064566
 MonoBehaviour:
   m_ObjectHideFlags: 0

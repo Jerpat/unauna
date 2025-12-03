@@ -34,6 +34,9 @@ public class QuestManagerScene3 : MonoBehaviour
     public void Start()
     {
         //Quest UI Setting
+        QuestPanel = UIMenuManager.instance.questPanel;
+        QuestText = UIMenuManager.instance.questText;
+        Quest3ProgressBar = UIMenuManager.instance.quest3ProgressBar;
         QuestPanel.gameObject.SetActive(false);
     }
 
