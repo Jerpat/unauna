@@ -38,6 +38,10 @@ public class QuestManagerScene2 : MonoBehaviour
     public void Start()
     {
         //Quest UI Setting
+        QuestPanel = UIMenuManager.instance.questPanel;
+        QuestText = UIMenuManager.instance.questText;
+        Quest2ProgressBar = UIMenuManager.instance.quest2ProgressBar;
+
         QuestPanel.gameObject.SetActive(false);
     }
 

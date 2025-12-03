@@ -12394,6 +12394,7 @@ MonoBehaviour:
   walkInterval: 0.4
   runInterval: 0.25
   hitEnemySFX: {fileID: 8300000, guid: ec9868a8566ba834a8c842b42a107798, type: 3}
+  dieEnemySFX: {fileID: 0}
   healSFX: {fileID: 8300000, guid: b1876289626a02c4299c3236e943e391, type: 3}
 --- !u!114 &579064559
 MonoBehaviour:
@@ -12530,6 +12531,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e8454d12302f140998e655b26f829d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  talkingPanel: {fileID: 981543730}
+  talkingText: {fileID: 1559678273}
+  talkingNameText: {fileID: 1133300202}
 --- !u!114 &579064566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12556,7 +12560,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579064556}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a313949c47d4324c9640d0b8fbaa0d1, type: 3}
   m_Name: 
@@ -46024,7 +46028,7 @@ GameObject:
   - component: {fileID: 2139731878}
   - component: {fileID: 2139731877}
   m_Layer: 5
-  m_Name: LoadingUIScene1
+  m_Name: LoadingUIScene3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46069,7 +46073,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 6854de72efb08cd4fa306747d8ca18a4, type: 3}
+  m_Texture: {fileID: 2800000, guid: ebc664b25e758404f81d65c459c9f43e, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
