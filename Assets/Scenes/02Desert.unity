@@ -7500,7 +7500,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &638143806
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13691,8 +13691,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -15567,6 +15567,7 @@ MonoBehaviour:
   quest1State: 0
   quest2State: 0
   quest3State: 0
+  Barrier: {fileID: 716491293}
   interactionTextUI: {fileID: 2072287725}
   TalkingPanel: {fileID: 695450157}
   TalkingText: {fileID: 191838361}
@@ -18833,6 +18834,7 @@ GameObject:
   - component: {fileID: 2008286875}
   - component: {fileID: 2008286874}
   - component: {fileID: 2008286873}
+  - component: {fileID: 2008286882}
   m_Layer: 5
   m_Name: 'Canvas '
   m_TagString: Untagged
@@ -18880,13 +18882,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e8454d12302f140998e655b26f829d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  talkingPanel: {fileID: 695450157}
-  talkingText: {fileID: 191838361}
-  talkingNameText: {fileID: 858037376}
-  questPanel: {fileID: 693239387}
-  questText: {fileID: 1298719630}
-  quest2ProgressBar: {fileID: 866019936}
-  quest3ProgressBar: {fileID: 1843591710}
 --- !u!114 &2008286873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18894,16 +18889,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008286870}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2a0b054745b83b4198bcf823f11e374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentQuest3Progress: 0
-  BarrierWall3: {fileID: 0}
-  QuestPanel: {fileID: 0}
-  QuestText: {fileID: 0}
-  Quest3ProgressBar: {fileID: 0}
+  QuestPanel: {fileID: 693239387}
+  QuestText: {fileID: 1298719630}
+  Quest3ProgressBar: {fileID: 1843591710}
   IsActive: 0
   QuestIsCompleted: 0
 --- !u!114 &2008286874
@@ -18919,7 +18913,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentQuest2Progress: 0
-  BarrierWall2: {fileID: 716491293}
   QuestPanel: {fileID: 693239387}
   QuestText: {fileID: 1298719630}
   Quest2ProgressBar: {fileID: 866019936}
@@ -18932,13 +18925,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008286870}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4629f5f54521329499b79b511ead9dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentQuest1Progress: 0
-  BarrierWall1: {fileID: 0}
   QuestPanel: {fileID: 693239387}
   QuestText: {fileID: 1298719630}
   Quest1ProgressBar: {fileID: 965063066}
@@ -19063,6 +19055,28 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2008286882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008286870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48130771b9202e84c808194baf611d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talkingPanel: {fileID: 695450157}
+  talkingText: {fileID: 191838361}
+  talkingNameText: {fileID: 858037376}
+  questPanel: {fileID: 693239387}
+  questText: {fileID: 1298719630}
+  quest1Progressbar: {fileID: 965063066}
+  quest2Progressbar: {fileID: 866019936}
+  quest3Progressbar: {fileID: 1843591710}
+  pausemenuUI: {fileID: 400519352}
+  hPText: {fileID: 1787800877}
 --- !u!1001 &2015590373
 PrefabInstance:
   m_ObjectHideFlags: 0

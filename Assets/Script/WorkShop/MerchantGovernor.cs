@@ -13,6 +13,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
 
     //Scene SetUp
     private string currentScene;
+    public GameObject Barrier;
 
     //Interface SetUp
     private bool canTalk = true;
@@ -40,9 +41,9 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         interactionTextUI = GetComponentInChildren<TMP_Text>();
 
         //UI Setting
-        TalkingPanel = UIMenuManager.instance.talkingPanel;
-        TalkingText = UIMenuManager.instance.talkingText;
-        TalkingNameText = UIMenuManager.instance.talkingNameText;
+        TalkingPanel = UIGameManager.instance.talkingPanel;
+        TalkingText = UIGameManager.instance.talkingText;
+        TalkingNameText = UIGameManager.instance.talkingNameText;
 
         TalkingPanel.gameObject.SetActive(false);
 
@@ -130,6 +131,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         else if (quest1State == QuestState.Given && QuestManagerScene1.instance.QuestIsCompleted == true)
         {
             QuestManagerScene1.instance.ClearedQuest();
+            Barrier.gameObject.SetActive(false);
             TalkingPanel.SetActive(true);
             TalkingText.text = "Oh.. You Got it! Now I can make [Guilding Light] to show the secret door and we can get out of here!";
             quest1State = QuestState.TurnedIn;
@@ -155,6 +157,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         else if (quest2State == QuestState.Given && QuestManagerScene2.instance.QuestIsCompleted == true)
         {
             QuestManagerScene2.instance.ClearedQuest();
+            Barrier.gameObject.SetActive(false);
             TalkingPanel.SetActive(true);
             TalkingText.text = "Phewww I thought we all going to die here.. Anyway! Let's countinue";
             quest2State = QuestState.TurnedIn;
@@ -179,7 +182,8 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         }
         else if (quest3State == QuestState.Given && QuestManagerScene3.instance.QuestIsCompleted == true)
         {
-            QuestManagerScene2.instance.ClearedQuest();
+            QuestManagerScene3.instance.ClearedQuest();
+            Barrier.gameObject.SetActive(false);
             TalkingPanel.SetActive(true);
             TalkingText.text = "Finally! Now we can enter Unauna city";
             quest3State = QuestState.TurnedIn;

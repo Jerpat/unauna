@@ -11,7 +11,6 @@ public class QuestManagerScene2 : MonoBehaviour
     //Set up
     public static QuestManagerScene2 instance; 
     public int currentQuest2Progress = 0;
-    public GameObject BarrierWall2;
 
     //Quest Text 
     public GameObject QuestPanel;
@@ -38,9 +37,9 @@ public class QuestManagerScene2 : MonoBehaviour
     public void Start()
     {
         //Quest UI Setting
-        QuestPanel = UIMenuManager.instance.questPanel;
-        QuestText = UIMenuManager.instance.questText;
-        Quest2ProgressBar = UIMenuManager.instance.quest2ProgressBar;
+        QuestPanel = UIGameManager.instance.questPanel;
+        QuestText = UIGameManager.instance.questText;
+        Quest2ProgressBar = UIGameManager.instance.quest2Progressbar;
 
         QuestPanel.gameObject.SetActive(false);
     }
@@ -60,7 +59,7 @@ public class QuestManagerScene2 : MonoBehaviour
         currentQuest2Progress += progress;
         Quest2ProgressBar.value = currentQuest2Progress;
         Debug.Log($"Kills Count = {currentQuest2Progress}");
-        if (IsActive == true && currentQuest2Progress == 3) 
+        if (IsActive == true && currentQuest2Progress > 0) 
         {
 
             //QuestText.text = "Quest: Completed! (Talk to Merchant Governor to countinue)";
@@ -72,19 +71,9 @@ public class QuestManagerScene2 : MonoBehaviour
         }
     }
 
-    public void CompletedQuest()
-    {
-        //Quest now ended
-        QuestText.text = "Quest Completed! Talk to [Merchant Governor] to continue";
-        //QuestPanel.gameObject.SetActive(false);
-        Debug.Log("Quest 2 Completed");
-        //MerchantGovernor.instance.GiveRewardScene1();
-    }
-
     public void ClearedQuest()
     {
         QuestPanel.gameObject.SetActive(false);
-        BarrierWall2.gameObject.SetActive(false);
         //LoadSceneManager.instance.LoadNewScene(LoadScene3Name);
     }
 }

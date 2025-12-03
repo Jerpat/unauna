@@ -9,7 +9,6 @@ public class QuestManagerScene1 : MonoBehaviour
     //Set up
     public static QuestManagerScene1 instance;
     public int currentQuest1Progress = 0;
-    public GameObject BarrierWall1;
 
     //Quest Text 
     public GameObject QuestPanel;
@@ -36,6 +35,10 @@ public class QuestManagerScene1 : MonoBehaviour
     public void Start()
     {
         //Quest UI Setting
+        QuestPanel = UIGameManager.instance.questPanel;
+        QuestText = UIGameManager.instance.questText;
+        Quest1ProgressBar = UIGameManager.instance.quest3Progressbar;
+
         QuestPanel.gameObject.SetActive(false);
     }
 
@@ -62,19 +65,9 @@ public class QuestManagerScene1 : MonoBehaviour
             QuestIsCompleted = true;
         }
     }
-    public void CompletedQuest()
-    {
-        //Quest now ended
-        //QuestText.text = "Quest Completed! Talk to [Merchant Governor] to continue";
-        //QuestPanel.gameObject.SetActive(false);
-        Debug.Log("Quest 1 Completed");
-        //MerchantGovernor.instance.GiveRewardScene1();
-    }
-
     public void ClearedQuest()
     {
         QuestPanel.gameObject.SetActive(false);
-        BarrierWall1.gameObject.SetActive(false);
         //LoadSceneManager.instance.LoadNewScene(LoadScene3Name);
     }
 }

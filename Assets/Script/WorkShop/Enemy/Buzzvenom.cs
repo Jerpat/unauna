@@ -99,4 +99,15 @@ public class Buzzvenom : EnemyPatrol, IDestroyable
             timer = TimeToAttack;
         }
     }
+
+    public override void TakeDamage(int amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            QuestManagerScene2.instance.OnGoingQuest(1);
+            Destroy(gameObject);
+            SoundManager.instance.PlaySFX(SoundManager.instance.dieEnemySFX);
+        }
+    }
 }
