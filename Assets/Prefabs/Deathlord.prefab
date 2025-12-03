@@ -474,7 +474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Deathlord
   _maxHealth: 100
-  Damage: 10
+  Damage: 7
   Defense: 10
   walkSpeed: 0
   seeRange: 20

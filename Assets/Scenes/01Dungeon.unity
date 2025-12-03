@@ -4002,7 +4002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Excalibur
-  Damage: 25
+  Damage: 15
 --- !u!135 &178923432
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8455,6 +8455,7 @@ MonoBehaviour:
   quest3Progressbar: {fileID: 601505860}
   pausemenuUI: {fileID: 189245076}
   hPText: {fileID: 907616380}
+  potionCountText: {fileID: 1225700109}
 --- !u!4 &348780914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6716378952611014762, guid: 4ac0456bf1c2d984389e8e5b3db081ca, type: 3}
@@ -50405,7 +50406,7 @@ Transform:
   m_GameObject: {fileID: 1984568992}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.11245197, z: -0, w: 0.9936572}
-  m_LocalPosition: {x: -0.557, y: 1.251, z: -2.166}
+  m_LocalPosition: {x: -0.457, y: 1.142, z: -1.728}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

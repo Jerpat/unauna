@@ -29,6 +29,8 @@ public class UIMenuManager : MonoBehaviour
     //Exit Back to Home
     public void BackToHomeClicked()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.LoadScene(00);
         Debug.Log("Back to Home Scene");
     }

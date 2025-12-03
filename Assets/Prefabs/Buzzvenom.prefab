@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Buzzvenom
   _maxHealth: 100
-  Damage: 1
+  Damage: 15
   Defense: 10
   walkSpeed: 0
   seeRange: 10

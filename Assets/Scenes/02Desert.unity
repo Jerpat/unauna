@@ -3001,6 +3001,10 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.9
       objectReference: {fileID: 0}
+    - target: {fileID: 736626096980524951, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 65cdfe32a78461542b447f20b611247a, type: 2}
     - target: {fileID: 788634451135828829, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -19077,6 +19081,7 @@ MonoBehaviour:
   quest3Progressbar: {fileID: 1843591710}
   pausemenuUI: {fileID: 400519352}
   hPText: {fileID: 1787800877}
+  potionCountText: {fileID: 1517156409}
 --- !u!1001 &2015590373
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12791,6 +12791,7 @@ MonoBehaviour:
   quest3Progressbar: {fileID: 6478326}
   pausemenuUI: {fileID: 954179122}
   hPText: {fileID: 901502415}
+  potionCountText: {fileID: 831409781}
 --- !u!1001 &580165021
 PrefabInstance:
   m_ObjectHideFlags: 0

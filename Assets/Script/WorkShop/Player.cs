@@ -35,6 +35,9 @@ public class Player : Character
     bool _isInteracting = false;
     bool _isHealing = false;
 
+    private float attackCooldown = 0.2f;
+    private float attackTimer = 0f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,6 +49,18 @@ public class Player : Character
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
+    void Awake()
+    {
+        if (FindObjectsOfType<Player>().Length > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
+
 
     public void FixedUpdate()
     {
@@ -62,11 +77,15 @@ public class Player : Character
             UsePotion();
             _isHealing = false;
         }
+
+        if (attackTimer > 0f)
+            attackTimer -= Time.deltaTime;
     }
     public void AddItem(Item item)
     {
         inventory.Add(item);
     }
+
 
     // setting handle
     private void HandleInput()
@@ -88,14 +107,14 @@ public class Player : Character
 
         _inputDirection = new Vector3(h, 0, v);
         _isRunning = Input.GetKey(KeyCode.LeftShift);
-        _isAttacking = Input.GetMouseButtonDown(0);
+        _isAttacking = Input.GetMouseButton(0);
         _isInteracting = Input.GetKeyDown(KeyCode.E);
         _isHealing = Input.GetKeyDown(KeyCode.Q);
     }
 
     public void Attack(bool isAttacking)
     {
-        if (!isAttacking) return;
+        /*if (!isAttacking) return;
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
@@ -113,7 +132,22 @@ public class Player : Character
             Debug.Log($"{gameObject.name} attacks for {Damage} damage.");
             
         }
-        _isAttacking = false;
+        _isAttacking = false;*/
+        if (!isAttacking || attackTimer > 0f) return;
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            animator.Play("Attack", 0, 0f);
+        else
+            animator.SetTrigger("Attack");
+
+        var e = InFront as IDestroyable;
+        if (e != null)
+        {
+            e.TakeDamage(Damage);
+            Debug.Log($"{gameObject.name} attacks for {Damage} damage.");
+        }
+
+        attackTimer = attackCooldown;
     }
 
 

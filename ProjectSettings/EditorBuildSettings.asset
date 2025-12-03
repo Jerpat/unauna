@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/01Dungeon.unity
     guid: 4e93590ad79d700459ae5e5832535d3b
   - enabled: 1
-    path: Assets/Scenes/02Desert Test UI Items.unity
-    guid: b0526aa9a9dd31f4ebc32df3ad7aba9e
-  - enabled: 1
     path: Assets/Scenes/02Desert.unity
     guid: 73fcad38d6dfae14eb51ad62bcdd678c
   - enabled: 1

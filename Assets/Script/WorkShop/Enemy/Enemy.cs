@@ -19,7 +19,7 @@ public abstract class Enemy : Character
     protected State currentState = State.idle;
 
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         if (agent == null)

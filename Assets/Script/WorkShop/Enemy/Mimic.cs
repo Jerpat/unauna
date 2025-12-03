@@ -17,6 +17,12 @@ public class Mimic : Enemy, IInteractable, IDestroyable
     private bool isPaused = false;
     private float pauseTime = 0f;
 
+    protected override void Awake()
+{
+    base.Awake(); 
+    agent.speed = 6f;
+}
+
     public void Interact(Player player)
     {
         if (currentState == State.idle)

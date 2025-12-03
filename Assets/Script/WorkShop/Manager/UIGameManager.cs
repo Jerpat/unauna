@@ -20,6 +20,8 @@ public class UIGameManager : MonoBehaviour
 
     public GameObject pausemenuUI;
     public TMP_Text hPText;
+    public TMP_Text potionCountText;
+
 
     private void Awake()
     {

@@ -479,16 +479,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Redbolt
-  _maxHealth: 100
-  Damage: 20
+  _maxHealth: 200
+  Damage: 30
   Defense: 10
   walkSpeed: 0
   seeRange: 10
   atkRange: 3
   interactionTextUI: {fileID: 8557041696450012303}
-  TalkingPanel: {fileID: 0}
-  TalkingText: {fileID: 0}
-  TalkingNameText: {fileID: 0}
-  TalkingLines:
-  - Bluebuzz are trying to steal our area...
-  - Please help us fighting!
