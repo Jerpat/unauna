@@ -3237,6 +3237,17 @@ PrefabInstance:
       addedObject: {fileID: 302269694}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+--- !u!114 &220180887 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1377451366773954460, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+  m_PrefabInstance: {fileID: 220180886}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a022a8413b29847b8f0d318419cedd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &224533464
 GameObject:
   m_ObjectHideFlags: 0
@@ -5419,7 +5430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6034591356172987391, guid: 93e2a0aa6b8a5874e93e6935a15c4db1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5664768
+      value: 1.37
       objectReference: {fileID: 0}
     - target: {fileID: 6034591356172987391, guid: 93e2a0aa6b8a5874e93e6935a15c4db1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15644,6 +15655,7 @@ MonoBehaviour:
   quest2State: 0
   quest3State: 0
   Barrier: {fileID: 716491293}
+  player: {fileID: 220180887}
   interactionTextUI: {fileID: 2072287725}
   TalkingPanel: {fileID: 695450157}
   TalkingText: {fileID: 191838361}
@@ -16728,7 +16740,7 @@ GameObject:
   - component: {fileID: 1787800878}
   - component: {fileID: 1787800877}
   m_Layer: 5
-  m_Name: HealthText
+  m_Name: HPText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19104,7 +19116,7 @@ MonoBehaviour:
   musicSource: {fileID: 0}
   sfxSource: {fileID: 0}
   defaultButtonClick: {fileID: 8300000, guid: 40edb9618b1b7f948a2c4c39a9072df2, type: 3}
-  defaultBackgroundMusic: {fileID: 8300000, guid: 1d101ccba93d5cb4f9f6dc45902f086c, type: 3}
+  defaultBackgroundMusic: {fileID: 8300000, guid: eee6a2072078dcb4285e9f3c36454e36, type: 3}
   grassStep: {fileID: 8300000, guid: fdfa07727ba18e146b0d737f16110ba5, type: 3}
   sandStep: {fileID: 8300000, guid: 18524d7f295d11b40a2b7bd3d9ef3561, type: 3}
   stoneStep: {fileID: 8300000, guid: dbe4405baeea2404ba3d422430b5fd3b, type: 3}

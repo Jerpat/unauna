@@ -37,7 +37,7 @@ public class QuestManagerScene1 : MonoBehaviour
         //Quest UI Setting
         QuestPanel = UIGameManager.instance.questPanel;
         QuestText = UIGameManager.instance.questText;
-        Quest1ProgressBar = UIGameManager.instance.quest3Progressbar;
+        Quest1ProgressBar = UIGameManager.instance.quest1Progressbar;
 
         QuestPanel.gameObject.SetActive(false);
     }

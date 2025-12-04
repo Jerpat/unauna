@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -29,6 +31,25 @@ public class SoundManager : MonoBehaviour
     public AudioClip dieEnemySFX;
     public AudioClip healSFX;
 
+    private string currentScene;
+
+    private void Update()
+    {
+        currentScene = SceneManager.GetActiveScene().name;
+
+        if (currentScene == "01Dungeon")
+        {
+            defaultBackgroundMusic = GameObject.Find("ambDungeon")?.GetComponent<AudioClip>();
+        }
+        else if (currentScene == "02Desert")
+        {
+            defaultBackgroundMusic = GameObject.Find("ambDesert")?.GetComponent<AudioClip>();
+        }
+        else if (currentScene == "03Forest")
+        {
+            defaultBackgroundMusic = GameObject.Find("ambForest")?.GetComponent<AudioClip>();
+        }
+    }
     private void Awake()
     {
         if (instance == null)

@@ -12588,7 +12588,7 @@ MonoBehaviour:
   musicSource: {fileID: 0}
   sfxSource: {fileID: 0}
   defaultButtonClick: {fileID: 8300000, guid: 40edb9618b1b7f948a2c4c39a9072df2, type: 3}
-  defaultBackgroundMusic: {fileID: 8300000, guid: 7fc17a6092b94f24a88fcbd422463e8e, type: 3}
+  defaultBackgroundMusic: {fileID: 8300000, guid: eee6a2072078dcb4285e9f3c36454e36, type: 3}
   grassStep: {fileID: 8300000, guid: fdfa07727ba18e146b0d737f16110ba5, type: 3}
   sandStep: {fileID: 8300000, guid: 18524d7f295d11b40a2b7bd3d9ef3561, type: 3}
   stoneStep: {fileID: 8300000, guid: eec53751c4e79a7469fc34e774360128, type: 3}
@@ -41497,6 +41497,7 @@ MonoBehaviour:
   quest2State: 0
   quest3State: 0
   Barrier: {fileID: 622385867}
+  player: {fileID: 0}
   interactionTextUI: {fileID: 1013054584}
   TalkingPanel: {fileID: 981543730}
   TalkingText: {fileID: 1559678273}

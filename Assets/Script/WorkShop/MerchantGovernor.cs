@@ -14,6 +14,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
     //Scene SetUp
     private string currentScene;
     public GameObject Barrier;
+    public Player player;
 
     //Interface SetUp
     private bool canTalk = true;
@@ -50,6 +51,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         //Scene Setting
         currentScene = SceneManager.GetActiveScene().name;
         Debug.Log("Current Scene = " + currentScene);
+
     }
     public void Update()
     {
@@ -133,7 +135,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
             QuestManagerScene1.instance.ClearedQuest();
             Barrier.gameObject.SetActive(false);
             TalkingPanel.SetActive(true);
-            TalkingText.text = "Oh.. You Got it! Now I can make [Guilding Light] to show the secret door and we can get out of here!";
+            TalkingText.text = "Oh.. You got it! Now I can make [Guilding Light] that show us the secret door and we can get out of here!";
             quest1State = QuestState.TurnedIn;
             Debug.Log("Quest 1 Turned in");
             return;

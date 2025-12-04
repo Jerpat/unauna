@@ -24,12 +24,10 @@ public class UIMenuManager : MonoBehaviour
     //}
     public void Update()
     {
-        Debug.Log("Test123");
         if (currentScene == "04Win")
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            Debug.Log("Test123");
         }
         else if (currentScene == "05Lose")
         {

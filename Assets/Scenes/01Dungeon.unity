@@ -8330,7 +8330,7 @@ MonoBehaviour:
   musicSource: {fileID: 0}
   sfxSource: {fileID: 0}
   defaultButtonClick: {fileID: 8300000, guid: 40edb9618b1b7f948a2c4c39a9072df2, type: 3}
-  defaultBackgroundMusic: {fileID: 8300000, guid: 0fc315389bffc6742ba54af758ae1a3e, type: 3}
+  defaultBackgroundMusic: {fileID: 8300000, guid: eee6a2072078dcb4285e9f3c36454e36, type: 3}
   grassStep: {fileID: 8300000, guid: fdfa07727ba18e146b0d737f16110ba5, type: 3}
   sandStep: {fileID: 8300000, guid: 18524d7f295d11b40a2b7bd3d9ef3561, type: 3}
   stoneStep: {fileID: 8300000, guid: dbe4405baeea2404ba3d422430b5fd3b, type: 3}
@@ -48788,6 +48788,7 @@ MonoBehaviour:
   quest2State: 0
   quest3State: 0
   Barrier: {fileID: 920499029}
+  player: {fileID: 1954258076}
   interactionTextUI: {fileID: 1199656365}
   TalkingPanel: {fileID: 1941154182}
   TalkingText: {fileID: 736136247}
@@ -50397,6 +50398,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8855052669661678444, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
   m_PrefabInstance: {fileID: 1954258074}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1954258076 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1377451366773954460, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+  m_PrefabInstance: {fileID: 1954258074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a022a8413b29847b8f0d318419cedd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1955275388
 PrefabInstance:
   m_ObjectHideFlags: 0
