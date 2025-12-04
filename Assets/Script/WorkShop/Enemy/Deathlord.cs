@@ -19,11 +19,6 @@ public class Deathlord : Enemy, IInteractable, IDestroyable
         Invoke("CloseWord", 3);
     }
 
-    void CloseWord()
-    {
-        WordTextUI.gameObject.SetActive(false);
-    }
-
     protected override void Update()
     {
         timer -= Time.deltaTime;

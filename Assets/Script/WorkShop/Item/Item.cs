@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(SphereCollider))] //auto insert collider
+[RequireComponent(typeof(Collider))] //auto insert collider
 public class Item : Identity
 {
     private Collider _collider; //child  can reach this
