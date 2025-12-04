@@ -44,7 +44,7 @@ public class QuestManagerScene3 : MonoBehaviour
     {
         //Quest UI Setting
         QuestPanel.gameObject.SetActive(true);
-        QuestText.text = "Quest: Kill [Monster] and Take [A Key]"; //+ "(" + currentQuestProgress + "/3)";
+        QuestText.text = "Quest: Kill [Monster] and Take a [Key]"; //+ "(" + currentQuestProgress + "/3)";
         IsActive = true;
         Debug.Log("Quest 3 Started");
     }
@@ -52,8 +52,8 @@ public class QuestManagerScene3 : MonoBehaviour
     public void OnGoingQuest(int progress)
     {
         //Quest Info
+        currentQuest3Progress = progress;
         Quest3ProgressBar.value = currentQuest3Progress;
-        currentQuest3Progress += progress;
         Debug.Log("Currently Quest: Find A Key that drop from Monster"); //
         if (IsActive == true && currentQuest3Progress > 0) //
         {
@@ -67,6 +67,7 @@ public class QuestManagerScene3 : MonoBehaviour
 
     public void ClearedQuest()
     {
+        Quest3ProgressBar.gameObject.SetActive(false);
         QuestPanel.gameObject.SetActive(false);
         //LoadSceneManager.instance.LoadNewScene(LoadScene3Name);
     }

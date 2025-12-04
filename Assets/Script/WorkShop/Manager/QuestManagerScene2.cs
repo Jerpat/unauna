@@ -48,7 +48,7 @@ public class QuestManagerScene2 : MonoBehaviour
     {
         //Quest UI Setting
         QuestPanel.gameObject.SetActive(true);
-        QuestText.text = "Quest 2: Kill all Buzzvenoms"; //+ "(" + currentQuestProgress + "/3)";
+        QuestText.text = "Quest 2: Kill all [Buzzvenoms]"; //+ "(" + currentQuestProgress + "/3)";
         IsActive = true;
         Debug.Log("Quest 2 Started");
     }
@@ -59,7 +59,7 @@ public class QuestManagerScene2 : MonoBehaviour
         currentQuest2Progress += progress;
         Quest2ProgressBar.value = currentQuest2Progress;
         Debug.Log($"Kills Count = {currentQuest2Progress}");
-        if (IsActive == true && currentQuest2Progress > 0) 
+        if (IsActive == true && currentQuest2Progress == 3) 
         {
 
             //QuestText.text = "Quest: Completed! (Talk to Merchant Governor to countinue)";
@@ -73,6 +73,7 @@ public class QuestManagerScene2 : MonoBehaviour
 
     public void ClearedQuest()
     {
+        Quest2ProgressBar.gameObject.SetActive(false);
         QuestPanel.gameObject.SetActive(false);
         //LoadSceneManager.instance.LoadNewScene(LoadScene3Name);
     }

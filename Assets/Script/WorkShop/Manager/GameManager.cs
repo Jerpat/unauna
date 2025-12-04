@@ -68,6 +68,9 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
+        //UI Setting
+        pauseMenuUI = UIGameManager.instance.pausemenuUI;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TogglePause();

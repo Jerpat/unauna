@@ -176,7 +176,7 @@ public class Player : Character
         }
         if (health <= 0)
         {
-            SceneManager.LoadScene(05);
+            SceneManager.LoadScene("05Lose");
             Destroy(gameObject);
         }
     }

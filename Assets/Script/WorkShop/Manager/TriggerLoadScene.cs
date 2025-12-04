@@ -8,11 +8,6 @@ public class TriggerLoadScene : Item
     {
         base.OnCollected(player);
         LoadSceneManager.instance.LoadNewScene(LoadSceneName);
-
-        if (gameObject.name == "Gate")
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
     }
+    
 }

@@ -1,10 +1,14 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIGameManager : MonoBehaviour
 {
     public static UIGameManager instance;
+
+    private string currentScene;
 
     //Talking UI Setting
     public GameObject talkingPanel;
@@ -36,4 +40,27 @@ public class UIGameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        currentScene = SceneManager.GetActiveScene().name;
+
+        if (currentScene == "01Dungeon" && QuestManagerScene1.instance.IsActive == true)
+        {
+            quest1Progressbar.gameObject.SetActive(true);
+            quest2Progressbar.gameObject.SetActive(false);
+            quest3Progressbar.gameObject.SetActive(false);
+        }
+        else if (currentScene == "02Desert" && QuestManagerScene2.instance.IsActive == true)
+        {
+            quest1Progressbar.gameObject.SetActive(false);
+            quest2Progressbar.gameObject.SetActive(true);
+            quest3Progressbar.gameObject.SetActive(false);
+        }
+        else if (currentScene == "03Forest" && QuestManagerScene3.instance.IsActive == true)
+        {
+            quest1Progressbar.gameObject.SetActive(false);
+            quest2Progressbar.gameObject.SetActive(false);
+            quest3Progressbar.gameObject.SetActive(true);
+        }
+    }
 }

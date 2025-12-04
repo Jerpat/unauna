@@ -46,7 +46,7 @@ public class QuestManagerScene1 : MonoBehaviour
     {
         //Quest UI Setting
         QuestPanel.gameObject.SetActive(true);
-        QuestText.text = "Quest 1: Fight [Deathloard] and get a [Glowing Crystal]"; //+ "(" + currentQuestProgress + "/3)";
+        QuestText.text = "Quest 1: Fight [Deathlord] and get a [Glowing Crystal]"; //+ "(" + currentQuestProgress + "/3)";
         IsActive = true;
         Debug.Log("Quest 1 Started");
     }
@@ -67,6 +67,7 @@ public class QuestManagerScene1 : MonoBehaviour
     }
     public void ClearedQuest()
     {
+        Quest1ProgressBar.gameObject.SetActive(false);
         QuestPanel.gameObject.SetActive(false);
         //LoadSceneManager.instance.LoadNewScene(LoadScene3Name);
     }

@@ -11,6 +11,8 @@ public class LoadSceneManager : MonoBehaviour
     [Header("Loading Screen Reference")]
     public GameObject loadingScreenPanel;
 
+    private string currentScene;
+
     // 3. Singleton Initialization
     private void Awake()
     {
@@ -27,6 +29,24 @@ public class LoadSceneManager : MonoBehaviour
 
     // ------------------- Core Functionality -------------------
 
+    private void Update()
+    {
+        currentScene = SceneManager.GetActiveScene().name;
+
+        if (currentScene == "04Win")
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Debug.Log("Test1");
+        }
+
+        if (currentScene == "05Lose")
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Debug.Log("Test2");
+        }
+    }
 
     public void LoadNewScene(string sceneName)
     {
@@ -53,6 +73,20 @@ public class LoadSceneManager : MonoBehaviour
             loadingScreenPanel.SetActive(false);
         }
 
+        //if (sceneName == "04Win")
+        //{
+        //    Cursor.lockState = CursorLockMode.None;
+        //    Cursor.visible = true;
+        //        Debug.Log("Test1");
+        //}
+
+        //if (sceneName == "05Lose")
+        //{
+        //    Cursor.lockState = CursorLockMode.None;
+        //    Cursor.visible = true;
+        //    Debug.Log("Test2");
+        //}
+
         Debug.Log($"Scene '{sceneName}' loaded and activated successfully.");
     }
 
@@ -70,4 +104,5 @@ public class LoadSceneManager : MonoBehaviour
     {
         return SceneManager.GetActiveScene().name;
     }
+
 }

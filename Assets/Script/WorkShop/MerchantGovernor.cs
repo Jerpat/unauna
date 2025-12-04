@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MerchantGovernor : Character, IInteractable, ITalkable
 {
     //Quest State SetUp
-    public enum QuestState { NotGiven, Given, Completed, TurnedIn }
+    public enum QuestState { NotGiven, Given, Completed, TurnedIn}
     public QuestState quest1State = QuestState.NotGiven;
     public QuestState quest2State = QuestState.NotGiven;
     public QuestState quest3State = QuestState.NotGiven;
@@ -125,7 +125,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         else if (quest1State == QuestState.Given && QuestManagerScene1.instance.IsActive == true)
         {
             TalkingPanel.SetActive(true);
-            TalkingText.text = "Quick! [Go Get a Glowing Crystal] and handle it to me!";
+            TalkingText.text = "Quick! [Go get a Glowing Crystal] and handle it to me!";
             SingleTalkingLine = true;
         }
         else if (quest1State == QuestState.Given && QuestManagerScene1.instance.QuestIsCompleted == true)
@@ -138,6 +138,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
             Debug.Log("Quest 1 Turned in");
             return;
         }
+
     }
 
     public void GiveQuestScene2()
@@ -177,7 +178,7 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
         else if (quest3State == QuestState.Given && QuestManagerScene3.instance.QuestIsCompleted == false)
         {
             TalkingPanel.SetActive(true);
-            TalkingText.text = "[A Key] must be around here... Hmmm I don't know where";
+            TalkingText.text = "A key must be somewhere around here... Please [Help me find a Key]!";
             SingleTalkingLine = true;
         }
         else if (quest3State == QuestState.Given && QuestManagerScene3.instance.QuestIsCompleted == true)
@@ -185,11 +186,12 @@ public class MerchantGovernor : Character, IInteractable, ITalkable
             QuestManagerScene3.instance.ClearedQuest();
             Barrier.gameObject.SetActive(false);
             TalkingPanel.SetActive(true);
-            TalkingText.text = "Finally! Now we can enter Unauna city";
+            TalkingText.text = "Finally! Now we can enter [Unauna City]";
             quest3State = QuestState.TurnedIn;
             Debug.Log("Quest 3 Turned in");
             return;
         }
+
     }
 
 }
